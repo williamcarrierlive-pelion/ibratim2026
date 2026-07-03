@@ -102,6 +102,13 @@
               font-size:1.1rem;color:var(--or-fonce);animation:flotte 3.5s ease-in-out infinite;
               transition:opacity .4s ease}
 
+  /* Petit sceau — rejouer l'animation */
+  #rejouer{position:fixed;top:.5rem;right:.7rem;z-index:60;width:38px;height:38px;padding:0;
+           border:none;background:transparent;cursor:pointer;
+           filter:drop-shadow(0 2px 6px rgba(0,0,0,.35));transition:transform .3s ease}
+  #rejouer:hover{transform:scale(1.12) rotate(-8deg)}
+  #rejouer svg{width:100%;height:100%;display:block}
+
   /* NAV */
   nav{position:fixed;top:0;width:100%;z-index:50;display:flex;justify-content:center;gap:2.2rem;
       padding:1rem;background:rgba(14,12,9,.88);backdrop-filter:blur(8px);
@@ -327,6 +334,24 @@
 <div id="curseur"></div>
 <div id="anneau"></div>
 
+<!-- Petit sceau : rejouer l'ouverture de l'enveloppe -->
+<button id="rejouer" type="button" aria-label="Revoir l'ouverture de l'invitation" title="Revoir l'invitation">
+  <svg viewBox="0 0 64 64">
+    <defs>
+      <radialGradient id="or-mini" cx="38%" cy="32%" r="78%">
+        <stop offset="0%" stop-color="#f6e09a"/>
+        <stop offset="45%" stop-color="#d4af37"/>
+        <stop offset="100%" stop-color="#8a6d1f"/>
+      </radialGradient>
+    </defs>
+    <circle cx="32" cy="32" r="27" fill="url(#or-mini)"/>
+    <circle cx="32" cy="32" r="27" fill="none" stroke="#8a6d1f" stroke-width="1.2"/>
+    <circle cx="32" cy="32" r="22" fill="none" stroke="#fff3c4" stroke-width="1" opacity=".75"/>
+    <path d="M25 20 L27 15 L30 18 L32 13 L34 18 L37 15 L39 20 Z" fill="#fdfbf5" opacity=".9"/>
+    <text x="32" y="42" text-anchor="middle" font-family="Allura, cursive" font-size="22" fill="#fdfbf5">I&amp;F</text>
+  </svg>
+</button>
+
 <nav>
   <a href="#accueil">Accueil</a>
   <a href="#programme">Programme</a>
@@ -492,6 +517,19 @@
     porte.style.transition='none'; deverrouiller();
   }
 
+  // ===== Petit sceau : rejouer l'ouverture =====
+  document.getElementById('rejouer').addEventListener('click', ()=>{
+    sessionStorage.removeItem('ibratim-ouvert');
+    porte.style.transition='none';
+    porte.classList.remove('ouvert');
+    env.classList.remove('ouverte');
+    hint.style.opacity='';
+    codeInput.value=''; codeErr.textContent='';
+    document.body.classList.add('verrouille');
+    scrollTo(0,0);
+    requestAnimationFrame(()=>{ porte.style.transition=''; });
+  });
+
   // ===== Compte à rebours =====
   const cible = new Date('2026-09-19T14:00:00Z').getTime();
   function maj(){
@@ -587,4 +625,4 @@
 </script>
 </body>
 </html>
-<!-- v7 -->
+<!-- v8 -->
