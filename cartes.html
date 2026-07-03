@@ -4,18 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cartes d'invitation — Fatim &amp; Ibrahim — prêt à imprimer</title>
-<link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   /* ============ IMPRESSION : 5×7 po, une carte par page ============
      Chrome → Imprimer → marges "Aucune" + "Graphiques d'arrière-plan". */
   :root{
     --noir:#0d0b08;
-    --brun:#1d150c;
+    --brun:#1a130b;
     --or:#c9a227;
     --or-vif:#e8c34d;
     --or-pale:#e6d9ae;
     --ivoire:#faf4e6;
-    --creme:#f4ecd8;
   }
   *{margin:0;padding:0;box-sizing:border-box;
     -webkit-print-color-adjust:exact !important;print-color-adjust:exact !important}
@@ -37,63 +36,75 @@
               -webkit-text-fill-color:transparent;color:transparent}
   .script{font-family:'Allura',cursive;font-weight:400}
 
-  /* ============ CARTE 1 — COUVERTURE MAGAZINE ABIDJAN ============ */
+  /* ============ CARTE 1 — COUVERTURE VOGUE ============ */
   .mag{background:var(--brun);color:#fff}
-  .mag .photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 18%;
-              filter:sepia(.22) saturate(1.05) brightness(.96)}
+  .mag .photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;
+              filter:sepia(.18) saturate(1.04) brightness(.97)}
   .mag .voile{position:absolute;inset:0;
-        background:linear-gradient(180deg,rgba(29,21,12,.62) 0%,rgba(29,21,12,.05) 30%,rgba(29,21,12,0) 52%,rgba(29,21,12,.88) 100%)}
-  .mag .pont{position:absolute;left:0;right:0;bottom:1.78in;width:100%;height:auto;color:var(--or-vif);
-             opacity:.5;filter:drop-shadow(0 0 6px rgba(232,195,77,.3))}
-  .mag .contenu{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
-        text-align:center;padding:.3in .3in .26in}
-  .masthead{font-family:'Cormorant Garamond',serif;font-weight:600;letter-spacing:.13em;
-        font-size:.74in;line-height:1;width:100%}
-  .mag .fil{font-size:.1in;letter-spacing:.3em;text-transform:uppercase;color:var(--or-pale);margin-top:.09in}
-  .mag .devise{position:absolute;left:.3in;top:1.62in;text-align:left;font-size:.115in;line-height:1.9;
-        letter-spacing:.14em;text-transform:uppercase;color:#f4ecd8;text-shadow:0 1px 8px rgba(0,0,0,.85)}
-  .mag .devise b{color:var(--or-vif);font-weight:600}
-  .mag .ames{position:absolute;right:.3in;top:2.62in;max-width:1.32in;text-align:right;
-        font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.155in;line-height:1.5;
-        color:var(--or-pale);text-shadow:0 1px 8px rgba(0,0,0,.85)}
-  .mag .bas{margin-top:auto;width:100%;display:flex;flex-direction:column;align-items:center}
-  .mag .noms-script{font-size:.56in;line-height:1;margin-bottom:.04in}
-  .mag .date-ligne{font-size:.12in;letter-spacing:.24em;text-transform:uppercase;color:#fff;margin-top:.05in}
-  .mag .lieu-ligne{font-family:'Cormorant Garamond',serif;font-size:.15in;letter-spacing:.14em;
-        color:var(--or-pale);margin-top:.04in}
-  .mag .hashtag{font-family:'Allura',cursive;font-size:.24in;margin-top:.04in}
+        background:linear-gradient(180deg,rgba(26,19,11,.42) 0%,rgba(26,19,11,.06) 26%,rgba(26,19,11,0) 48%,rgba(26,19,11,.86) 100%)}
+  .mag .contenu{position:absolute;inset:0;padding:.26in .3in .3in}
+  /* Masthead façon Didot */
+  .masthead{font-family:'Playfair Display',serif;font-weight:500;letter-spacing:.045em;
+        font-size:1.06in;line-height:.95;text-align:center;width:100%}
+  .mag .sur-masthead{display:flex;justify-content:space-between;align-items:baseline;
+        font-size:.092in;letter-spacing:.26em;text-transform:uppercase;color:#f4ecd8;margin-bottom:.05in}
+  .mag .sur-masthead b{color:var(--or-vif);font-weight:600}
+  /* Cover lines */
+  .mag .lignes-g{position:absolute;left:.3in;top:1.92in;text-align:left;max-width:1.6in}
+  .mag .lignes-g .l1{font-size:.12in;line-height:1.75;letter-spacing:.12em;text-transform:uppercase;
+        color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.9)}
+  .mag .lignes-g .l1 b{color:var(--or-vif);font-weight:600}
+  .mag .lignes-g .l2{margin-top:.22in;font-family:'Cormorant Garamond',serif;font-style:italic;
+        font-size:.16in;line-height:1.5;color:var(--or-pale);text-shadow:0 1px 10px rgba(0,0,0,.9)}
+  .mag .lignes-d{position:absolute;right:.3in;top:3.28in;text-align:right;max-width:1.5in;
+        text-shadow:0 1px 10px rgba(0,0,0,.9)}
+  .mag .lignes-d .t{font-size:.115in;letter-spacing:.16em;text-transform:uppercase;color:var(--or-vif);font-weight:600}
+  .mag .lignes-d .s{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.145in;
+        line-height:1.5;color:#f4ecd8;margin-top:.04in}
+  .mag .edition{position:absolute;left:.3in;top:4.62in;text-align:left;text-shadow:0 1px 10px rgba(0,0,0,.9)}
+  .mag .edition .t{font-size:.1in;letter-spacing:.2em;text-transform:uppercase;color:var(--or-pale)}
+  .mag .edition .v{font-size:.135in;letter-spacing:.16em;text-transform:uppercase;color:#fff;font-weight:600;margin-top:.02in}
+  .mag .edition .w{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.14in;color:var(--or-pale);margin-top:.02in}
+  /* Bas de couverture */
+  .mag .bas{position:absolute;left:.3in;right:.3in;bottom:.28in;text-align:center}
+  .mag .noms{font-family:'Playfair Display',serif;font-weight:500;font-size:.4in;letter-spacing:.04em;color:#fff}
+  .mag .noms .et{font-family:'Allura',cursive;font-size:.4in;vertical-align:-.04in;padding:0 .04in}
+  .mag .filet{width:2.2in;height:1px;margin:.08in auto;
+        background:linear-gradient(90deg,transparent,var(--or-vif),transparent)}
+  .mag .date-ligne{font-size:.15in;letter-spacing:.3em;text-transform:uppercase;color:var(--or-vif);font-weight:600}
+  .mag .lieu-ligne{font-size:.105in;letter-spacing:.22em;text-transform:uppercase;color:#f4ecd8;margin-top:.05in}
+  .mag .hashtag{font-family:'Allura',cursive;font-size:.2in;margin-top:.04in}
 
-  /* ============ CARTE 2 — VERSO IVOIRE ABIDJAN ============ */
+  /* ============ CARTE 2 — PAGE INTÉRIEURE MAGAZINE ============ */
   .det{background:
-        radial-gradient(ellipse 90% 40% at 50% 0%,rgba(201,162,39,.13),transparent 65%),
+        radial-gradient(ellipse 90% 40% at 50% 0%,rgba(201,162,39,.12),transparent 65%),
         var(--ivoire);
        color:#2e2617;display:flex;flex-direction:column;align-items:center;text-align:center;
-       padding:.42in .42in .3in}
+       padding:.44in .42in .34in}
   .det::before{content:'';position:absolute;inset:.13in;border:1.5px solid var(--or);pointer-events:none}
   .det::after{content:'';position:absolute;inset:.18in;border:.5px solid rgba(201,162,39,.55);pointer-events:none}
-  .det .pont-bas{position:absolute;left:0;right:0;bottom:.16in;width:100%;height:auto;color:#c9a227;opacity:.34}
-  .laurier{width:1.5in;height:auto;color:var(--or);margin-bottom:-.34in}
-  .det .mono{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:.5in;color:var(--or-fonce,#a8842a)}
-  .det .noms{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:.34in;letter-spacing:.06em;
-             margin-top:.06in;color:#2e2617}
-  .det .noms small{display:block;font-family:'Montserrat',sans-serif;font-weight:500;font-size:.095in;
-             letter-spacing:.3em;text-transform:uppercase;color:#6d5a2a;margin-top:.06in}
-  .det .intro{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.15in;line-height:1.5;
-              max-width:3.4in;margin-top:.14in;color:#4a3d22}
-  .det .sep{width:1in;height:1px;background:linear-gradient(90deg,transparent,var(--or),transparent);margin:.13in auto}
-  .det .bloc{display:flex;gap:.14in;align-items:baseline;justify-content:center;margin-top:.055in}
-  .det .bloc .q{font-family:'Cormorant Garamond',serif;font-size:.16in;font-weight:700;color:#a8842a;min-width:.62in;text-align:right}
-  .det .bloc .v{font-family:'Cormorant Garamond',serif;font-size:.155in;text-align:left;line-height:1.35}
+  .laurier{width:1.42in;height:auto;color:var(--or);margin-bottom:-.32in}
+  .det .mono{font-family:'Playfair Display',serif;font-weight:500;font-size:.44in;color:#a8842a}
+  .det .mono .script{font-size:.3in}
+  .det .noms{font-family:'Playfair Display',serif;font-weight:600;font-size:.3in;letter-spacing:.05em;
+             margin-top:.07in;color:#2e2617}
+  .det .noms small{display:block;font-family:'Montserrat',sans-serif;font-weight:500;font-size:.09in;
+             letter-spacing:.28em;text-transform:uppercase;color:#6d5a2a;margin-top:.06in}
+  .det .intro{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.148in;line-height:1.5;
+              max-width:3.4in;margin-top:.13in;color:#4a3d22}
+  .det .sep{width:1in;height:1px;background:linear-gradient(90deg,transparent,var(--or),transparent);margin:.12in auto}
+  .det .bloc{display:flex;gap:.14in;align-items:baseline;justify-content:center;margin-top:.05in}
+  .det .bloc .q{font-family:'Playfair Display',serif;font-size:.14in;font-weight:600;color:#a8842a;min-width:.66in;text-align:right}
+  .det .bloc .v{font-family:'Cormorant Garamond',serif;font-size:.15in;text-align:left;line-height:1.35}
   .det .rsvp-zone{margin-top:auto;display:flex;align-items:center;gap:.2in;position:relative;z-index:2}
   .qr{width:.98in;height:.98in;background:#fff;border:1.5px solid var(--or);padding:.055in}
   .det .rsvp-texte{text-align:left;max-width:2.3in}
-  .det .rsvp-texte .etq{font-size:.09in;letter-spacing:.26em;text-transform:uppercase;color:#a8842a;font-weight:600}
+  .det .rsvp-texte .etq{font-size:.088in;letter-spacing:.24em;text-transform:uppercase;color:#a8842a;font-weight:600}
   .det .rsvp-texte p{font-family:'Cormorant Garamond',serif;font-size:.135in;line-height:1.4;margin-top:.03in}
   .det .code-acces{font-size:.1in;letter-spacing:.14em;margin-top:.04in;color:#2e2617}
   .det .code-acces b{color:#a8842a;letter-spacing:.2em}
-  .det .cadeau{font-family:'Allura',cursive;font-size:.24in;margin-top:.12in;position:relative;z-index:2}
-  .det .hash{font-size:.1in;letter-spacing:.26em;text-transform:uppercase;color:#6d5a2a;margin-top:.03in;
-             position:relative;z-index:2;margin-bottom:.05in}
+  .det .cadeau{font-family:'Allura',cursive;font-size:.235in;margin-top:.12in}
+  .det .hash{font-size:.095in;letter-spacing:.26em;text-transform:uppercase;color:#6d5a2a;margin-top:.03in}
 </style>
 </head>
 <body>
@@ -101,52 +112,56 @@
 <p class="note-ecran">Aperçu écran — impression : chaque carte sort sur sa page 5&nbsp;×&nbsp;7&nbsp;po
 (marges «&nbsp;Aucune&nbsp;» + graphiques d'arrière-plan).</p>
 
-<!-- ============ CARTE 1 : COUVERTURE MAGAZINE ============ -->
+<!-- ============ CARTE 1 : COUVERTURE VOGUE ============ -->
 <div class="carte mag">
   <img class="photo" src="PHOTO-2026-04-02-20-54-27.jpg" alt="Fatim et Ibrahim">
   <div class="voile"></div>
-  <!-- Pont d'Abidjan (Cocody) en filigrane doré -->
-  <svg class="pont" viewBox="0 0 500 110" fill="none" stroke="currentColor" stroke-width="1.6">
-    <path d="M150 96 L178 14 L206 96" stroke-width="2.4"/>
-    <path d="M178 20 L60 92 M178 24 L96 93 M178 28 L128 94 M178 24 L256 93 M178 20 L296 92 M178 28 L226 94"/>
-    <path d="M0 96 L500 96" stroke-width="3"/>
-    <path d="M330 96 V72 H344 V96 M352 96 V60 H368 V96 M376 96 V78 H388 V96 M398 96 V66 H414 V96 M422 96 V82 H436 V96" stroke-width="1.4"/>
-    <path d="M40 96 c 4 -14 10 -14 14 0 M462 96 c 4 -14 10 -14 14 0" stroke-width="1.4"/>
-    <path d="M47 82 c -8 -6 -16 -6 -22 -2 M47 82 c 8 -6 16 -6 22 -2 M47 82 c -4 -10 -2 -16 2 -20 M47 82 c 4 -10 2 -16 -2 -20 M469 82 c -8 -6 -16 -6 -22 -2 M469 82 c 8 -6 16 -6 22 -2 M469 82 c -4 -10 -2 -16 2 -20 M469 82 c 4 -10 2 -16 -2 -20" stroke-width="1.2"/>
-  </svg>
   <div class="contenu">
-    <div class="masthead or-degrade">WEDDING</div>
-    <div class="fil">Édition spéciale — Abidjan, Côte d'Ivoire</div>
-    <div class="devise">Notre <b>histoire</b>.<br>Notre <b>avenir</b>.<br>Notre <b>promesse</b>.</div>
-    <div class="ames">Deux âmes. Un engagement.<br>Une vie à écrire ensemble.</div>
+    <div class="sur-masthead"><span><b>Wedding</b> Edition</span><span>Septembre 2026</span></div>
+    <div class="masthead or-degrade">VOGUE</div>
+
+    <div class="lignes-g">
+      <div class="l1">Notre <b>histoire</b>.<br>Notre <b>avenir</b>.<br>Notre <b>promesse</b>.</div>
+      <div class="l2">Deux âmes.<br>Un engagement.<br>Une vie à écrire ensemble.</div>
+    </div>
+
+    <div class="lignes-d">
+      <div class="t">Une célébration<br>de l'amour</div>
+      <div class="s">Entourés de nos familles et de nos amis, nous célébrons notre amour.</div>
+    </div>
+
+    <div class="edition">
+      <div class="t">Édition spéciale</div>
+      <div class="v">Abidjan</div>
+      <div class="w">Côte d'Ivoire — là où tout commence…</div>
+    </div>
+
     <div class="bas">
-      <div class="noms-script script or-degrade">Fatim &amp; Ibrahim</div>
+      <div class="noms">FATIM <span class="et or-degrade">&amp;</span> IBRAHIM</div>
+      <div class="filet"></div>
       <div class="date-ligne">19 septembre 2026</div>
-      <div class="lieu-ligne">Pavillon Lotus — là où tout commence…</div>
+      <div class="lieu-ligne">Réception — Pavillon Lotus · Abidjan, Côte d'Ivoire</div>
       <div class="hashtag or-degrade">#Ibratim2026</div>
     </div>
   </div>
 </div>
 
-<p class="note-ecran">Carte 2 — verso ivoire : monogramme laurier, invitation, programme, QR + code d'accès du site.</p>
+<p class="note-ecran">Carte 2 — page intérieure : monogramme laurier, invitation, programme, QR + code d'accès du site.</p>
 
-<!-- ============ CARTE 2 : VERSO IVOIRE ============ -->
+<!-- ============ CARTE 2 : PAGE INTÉRIEURE ============ -->
 <div class="carte det">
-  <!-- Lauriers dorés autour du monogramme -->
   <svg class="laurier" viewBox="0 0 200 110" fill="currentColor">
     <g opacity=".9">
       <path d="M38 96 C 20 78, 14 52, 24 26 l 3 2 C 20 50, 26 74, 42 90 Z"/>
-      <g transform="translate(0,0)">
-        <ellipse cx="24" cy="30" rx="3.4" ry="8" transform="rotate(-38 24 30)"/>
-        <ellipse cx="21" cy="46" rx="3.4" ry="8" transform="rotate(-22 21 46)"/>
-        <ellipse cx="24" cy="62" rx="3.4" ry="8" transform="rotate(-8 24 62)"/>
-        <ellipse cx="31" cy="77" rx="3.4" ry="8" transform="rotate(8 31 77)"/>
-        <ellipse cx="41" cy="89" rx="3.4" ry="8" transform="rotate(24 41 89)"/>
-        <ellipse cx="34" cy="22" rx="3.2" ry="7.4" transform="rotate(-60 34 22)"/>
-        <ellipse cx="33" cy="40" rx="3.2" ry="7.4" transform="rotate(-42 33 40)"/>
-        <ellipse cx="36" cy="57" rx="3.2" ry="7.4" transform="rotate(-26 36 57)"/>
-        <ellipse cx="43" cy="72" rx="3.2" ry="7.4" transform="rotate(-10 43 72)"/>
-      </g>
+      <ellipse cx="24" cy="30" rx="3.4" ry="8" transform="rotate(-38 24 30)"/>
+      <ellipse cx="21" cy="46" rx="3.4" ry="8" transform="rotate(-22 21 46)"/>
+      <ellipse cx="24" cy="62" rx="3.4" ry="8" transform="rotate(-8 24 62)"/>
+      <ellipse cx="31" cy="77" rx="3.4" ry="8" transform="rotate(8 31 77)"/>
+      <ellipse cx="41" cy="89" rx="3.4" ry="8" transform="rotate(24 41 89)"/>
+      <ellipse cx="34" cy="22" rx="3.2" ry="7.4" transform="rotate(-60 34 22)"/>
+      <ellipse cx="33" cy="40" rx="3.2" ry="7.4" transform="rotate(-42 33 40)"/>
+      <ellipse cx="36" cy="57" rx="3.2" ry="7.4" transform="rotate(-26 36 57)"/>
+      <ellipse cx="43" cy="72" rx="3.2" ry="7.4" transform="rotate(-10 43 72)"/>
       <g transform="scale(-1,1) translate(-200,0)">
         <path d="M38 96 C 20 78, 14 52, 24 26 l 3 2 C 20 50, 26 74, 42 90 Z"/>
         <ellipse cx="24" cy="30" rx="3.4" ry="8" transform="rotate(-38 24 30)"/>
@@ -161,7 +176,7 @@
       </g>
     </g>
   </svg>
-  <div class="mono" style="color:#a8842a">F <span class="script" style="font-size:.34in">&amp;</span> I</div>
+  <div class="mono">F <span class="script or-degrade">&amp;</span> I</div>
   <div class="noms">Fatim &amp; Ibrahim
     <small>ont l'honneur de vous convier à la célébration de leur mariage</small>
   </div>
@@ -183,14 +198,6 @@
   </div>
   <div class="cadeau or-degrade">Votre présence est notre plus beau cadeau.</div>
   <div class="hash">#Ibratim2026</div>
-  <!-- Pont d'Abidjan en filigrane -->
-  <svg class="pont-bas" viewBox="0 0 500 70" fill="none" stroke="currentColor" stroke-width="1.2">
-    <path d="M150 60 L172 8 L194 60" stroke-width="1.8"/>
-    <path d="M172 12 L80 57 M172 15 L110 58 M172 18 L140 59 M172 15 L234 58 M172 12 L264 57 M172 18 L204 59"/>
-    <path d="M0 60 L500 60" stroke-width="2"/>
-    <path d="M320 60 V44 H332 V60 M340 60 V36 H354 V60 M362 60 V48 H372 V60 M382 60 V40 H396 V60 M404 60 V50 H416 V60" stroke-width="1"/>
-    <path d="M56 52 c -7 -5 -14 -5 -19 -2 M56 52 c 7 -5 14 -5 19 -2 M56 52 c -3 -9 -1 -14 2 -17 M56 52 c 3 -9 1 -14 -2 -17 M56 52 V60 M452 52 c -7 -5 -14 -5 -19 -2 M452 52 c 7 -5 14 -5 19 -2 M452 52 c -3 -9 -1 -14 2 -17 M452 52 c 3 -9 1 -14 -2 -17 M452 52 V60" stroke-width="1"/>
-  </svg>
 </div>
 
 </body>
