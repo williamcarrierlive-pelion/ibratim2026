@@ -80,7 +80,7 @@
         radial-gradient(ellipse 90% 40% at 50% 0%,rgba(201,162,39,.12),transparent 65%),
         var(--ivoire);
        color:#2e2617;display:flex;flex-direction:column;align-items:center;text-align:center;
-       padding:.4in .42in .28in}
+       padding:.42in .42in .34in}
   .det::before{content:'';position:absolute;inset:.13in;border:1px solid rgba(201,162,39,.7);pointer-events:none}
   /* Coins dorés */
   .coin{position:absolute;width:.92in;height:auto;z-index:1;pointer-events:none}
@@ -94,26 +94,26 @@
       -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 45%);
       mask-image:linear-gradient(180deg,transparent 0%,#000 45%)}
   /* Couronne de laurier + monogramme */
-  .couronne-mono{position:relative;width:2.1in;margin:0 auto}
+  .couronne-mono{position:relative;width:1.32in;margin:0 auto}
   .couronne-mono img{width:100%;height:auto;display:block}
   .noms-couronne{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-      font-family:'Playfair Display',serif;font-weight:600;font-size:.27in;letter-spacing:.03em;
-      color:#2e2617;padding-top:.06in;white-space:nowrap}
+      font-family:'Playfair Display',serif;font-weight:600;font-size:.25in;letter-spacing:.03em;
+      color:#2e2617;padding-top:.05in;white-space:nowrap}
   .noms-couronne .script{font-size:.24in;color:#a8842a;padding:0 .03in}
   .convier{font-family:'Montserrat',sans-serif;font-weight:500;font-size:.09in;
-      letter-spacing:.28em;text-transform:uppercase;color:#6d5a2a;margin-top:.1in}
-    .det .intro{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.142in;line-height:1.42;
-              max-width:3.5in;margin-top:.1in;color:#4a3d22}
-  .det .sep{width:1in;height:1px;background:linear-gradient(90deg,transparent,var(--or),transparent);margin:.11in auto}
+      letter-spacing:.28em;text-transform:uppercase;color:#6d5a2a;margin-top:.14in}
+    .det .intro{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.142in;line-height:1.52;
+              max-width:3.5in;margin-top:.14in;color:#4a3d22}
+  .det .sep{width:1in;height:1px;background:linear-gradient(90deg,transparent,var(--or),transparent);margin:.16in auto}
   /* Dates — deux colonnes uniformes */
-  .dates-row{display:flex;justify-content:center;align-items:stretch;gap:.3in;margin-top:.07in}
+  .dates-row{display:flex;justify-content:center;align-items:stretch;gap:.32in;margin-top:.1in}
   .date-col{text-align:center;min-width:1.5in}
-  .date-col .d-num{font-family:'Playfair Display',serif;font-weight:500;font-size:.34in;line-height:1;color:#a8842a}
+  .date-col .d-num{font-family:'Playfair Display',serif;font-weight:500;font-size:.36in;line-height:1;color:#a8842a}
   .date-col .d-mois{font-size:.09in;letter-spacing:.26em;text-transform:uppercase;color:#2e2617;margin-top:.035in}
   .date-col .d-evt{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.145in;color:#4a3d22;margin-top:.035in}
   .date-sep{width:1px;background:linear-gradient(180deg,transparent,var(--or),transparent)}
   /* Lieu — image en arche + infos */
-  .lieu-bloc{margin-top:.14in;display:flex;flex-direction:row;justify-content:center;align-items:center;gap:.26in}
+  .lieu-bloc{margin-top:.2in;display:flex;flex-direction:row;justify-content:center;align-items:center;gap:.26in}
   .lieu-bloc .arche{width:1.48in;height:1.02in;object-fit:cover;object-position:center;
       border-radius:50% 50% 0 0/62% 62% 0 0;border:1px solid var(--or);padding:.04in;background:#fffdf6}
   .lieu-txt{text-align:right}
@@ -122,7 +122,7 @@
   .lieu-bloc .l-adresse{font-family:'Cormorant Garamond',serif;font-size:.15in;color:#4a3d22;margin-top:.03in;line-height:1.4}
   .det>*{position:relative;z-index:2}
   .det>.coin,.det>.pont-aquarelle{position:absolute;z-index:1}
-  .det .rsvp-zone{margin-top:auto;display:flex;align-items:center;gap:.2in;position:relative;z-index:2}
+  .det .rsvp-zone{margin-top:auto;margin-bottom:.14in;display:flex;align-items:center;gap:.24in;position:relative;z-index:2}
   .qr{width:.88in;height:.88in;background:#fff;border:1.5px solid var(--or);padding:.055in}
   .det .rsvp-texte{text-align:left;max-width:2.3in}
   .det .rsvp-texte .etq{font-size:.088in;letter-spacing:.24em;text-transform:uppercase;color:#a8842a;font-weight:600}
@@ -217,8 +217,6 @@
       <p class="code-acces">Code d'accès : <b>IBRATIM2026</b></p>
     </div>
   </div>
-  <div class="cadeau or-degrade">Votre présence est notre plus beau cadeau.</div>
-  <div class="hash">#Ibratim2026</div>
 </div>
 
 </body>
