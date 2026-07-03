@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0e0c09">
+<title>Ibrahim &amp; Fatim — 19.09.26 — #Ibratim2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blanc:#fffdf8;
+    --ivoire:#faf6ec;
+    --noir:#0e0c09;
+    --noir-2:#171410;
+    --or:#c9a227;
+    --or-vif:#e8c34d;
+    --or-fonce:#a8842a;
+    --or-pale:#e6d9ae;
+    --texte:#3a352e;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Montserrat',sans-serif;color:var(--texte);background:var(--blanc);line-height:1.7;overflow-x:hidden}
+  h1,h2,h3{color:var(--noir)}
+  .script{font-family:'Allura',cursive;font-weight:400;color:var(--or)}
+
+  /* ===== CURSEUR DORÉ ===== */
+  @media(pointer:fine){
+    body{cursor:none}
+    a,button,input,select,textarea,img{cursor:none}
+    #curseur{position:fixed;top:0;left:0;width:10px;height:10px;border-radius:50%;
+             background:radial-gradient(circle,var(--or-vif),var(--or-fonce));
+             box-shadow:0 0 12px rgba(232,195,77,.9);pointer-events:none;z-index:9999;
+             transform:translate(-50%,-50%)}
+    #anneau{position:fixed;top:0;left:0;width:38px;height:38px;border-radius:50%;
+            border:1.5px solid var(--or);pointer-events:none;z-index:9998;
+            transform:translate(-50%,-50%);transition:width .25s,height .25s,border-color .25s;
+            box-shadow:0 0 18px rgba(201,162,39,.25) inset}
+    body.survol #anneau{width:64px;height:64px;border-color:var(--or-vif)}
+  }
+  .etincelle{position:fixed;pointer-events:none;z-index:9997;color:var(--or-vif);
+             font-size:12px;animation:scintille 1s ease-out forwards}
+  @keyframes scintille{
+    0%{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(0deg)}
+    100%{opacity:0;transform:translate(-50%,-140%) scale(.2) rotate(160deg)}
+  }
+
+  /* ===== TEXTE OR SCINTILLANT ===== */
+  .or-anime{background:linear-gradient(110deg,#8a6d1f 20%,var(--or-vif) 38%,#fff3c4 50%,var(--or-vif) 62%,#8a6d1f 80%);
+            background-size:220% auto;-webkit-background-clip:text;background-clip:text;
+            -webkit-text-fill-color:transparent;color:transparent;
+            animation:brillance 4.2s linear infinite}
+  @keyframes brillance{to{background-position:-220% center}}
+
+  /* ===== RÉVÉLATION AU DÉFILEMENT ===== */
+  .reveal{opacity:0;transform:translateY(36px);transition:opacity .9s ease,transform .9s ease}
+  .reveal.visible{opacity:1;transform:none}
+
+  /* ===== BANDE ROYALE (inspiration kente) ===== */
+  .bande{height:10px;background:repeating-linear-gradient(90deg,
+         var(--or) 0 34px,var(--noir) 34px 44px,var(--or-fonce) 44px 78px,var(--noir) 78px 88px)}
+
+  /* NAV */
+  nav{position:fixed;top:0;width:100%;z-index:50;display:flex;justify-content:center;gap:2.2rem;
+      padding:1rem;background:rgba(14,12,9,.88);backdrop-filter:blur(8px);
+      border-bottom:1px solid rgba(201,162,39,.45)}
+  nav a{color:var(--or-pale);text-decoration:none;font-size:.75rem;letter-spacing:.22em;
+        text-transform:uppercase;font-weight:500;transition:color .3s}
+  nav a:hover{color:var(--or-vif);text-shadow:0 0 12px rgba(232,195,77,.6)}
+
+  /* ORNEMENT doré */
+  .flourish{display:block;margin:0 auto;width:min(420px,80%);height:auto;color:var(--or)}
+
+  /* ===== HERO ===== */
+  header{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;
+         text-align:center;background:
+           radial-gradient(ellipse 90% 60% at 50% -10%,rgba(201,162,39,.16),transparent 60%),
+           var(--blanc);
+         padding:6.5rem 1.5rem 4rem;position:relative}
+  .couronne{width:64px;height:auto;color:var(--or);margin-bottom:.4rem;
+            filter:drop-shadow(0 0 10px rgba(232,195,77,.55));animation:flotte 3.5s ease-in-out infinite}
+  @keyframes flotte{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+  .the-wedding{font-weight:600;letter-spacing:.45em;text-transform:uppercase;
+               font-size:clamp(1.05rem,3vw,1.6rem);color:var(--noir);margin:1.4rem 0 .2rem}
+  header .noms{font-size:clamp(3.4rem,10vw,7rem);line-height:1.15;margin:.4rem 0}
+  .arche-cadre{position:relative;margin:1.8rem 0 .8rem}
+  .arche{width:min(340px,78vw);aspect-ratio:3/4;object-fit:cover;object-position:center 25%;
+         border-radius:50% 50% 0 0 / 38% 38% 0 0;border:1px solid var(--noir);
+         padding:10px;background:var(--blanc);display:block;
+         transition:transform .5s ease;will-change:transform}
+  .arche-cadre::before{content:'';position:absolute;inset:-14px;border:1px solid var(--or);
+         border-radius:50% 50% 0 0 / 38% 38% 0 0;opacity:.6;pointer-events:none}
+  header .date-num{font-weight:600;letter-spacing:.4em;font-size:1.3rem;color:var(--noir);margin-top:.8rem}
+  .hashtag{font-family:'Allura',cursive;font-size:2rem;margin-top:.3rem}
+  header .lieu-ligne{font-family:'Cormorant Garamond',serif;letter-spacing:.28em;text-transform:uppercase;
+                     font-size:.95rem;margin-top:.8rem;color:var(--texte)}
+
+  /* COUNTDOWN */
+  #compte{display:flex;gap:1rem;margin-top:2.4rem;flex-wrap:wrap;justify-content:center}
+  #compte div{background:var(--noir);border:1px solid var(--or);padding:1.1rem 1.2rem;min-width:96px;
+              box-shadow:0 0 22px rgba(201,162,39,.22),inset 0 0 14px rgba(201,162,39,.08);
+              transition:transform .3s ease,box-shadow .3s ease}
+  #compte div:hover{transform:translateY(-5px);box-shadow:0 8px 30px rgba(201,162,39,.45)}
+  #compte span{display:block;font-family:'Cormorant Garamond',serif;font-size:2.4rem;color:var(--or-vif);
+               text-shadow:0 0 14px rgba(232,195,77,.5)}
+  #compte small{font-size:.63rem;letter-spacing:.24em;text-transform:uppercase;color:var(--or-pale)}
+
+  section{max-width:1080px;margin:0 auto;padding:5.5rem 1.5rem;scroll-margin-top:56px}
+  .titre-section{text-align:center;margin-bottom:3rem}
+  .titre-section .script{font-size:clamp(2.6rem,6vw,3.8rem)}
+  .titre-section p{letter-spacing:.3em;text-transform:uppercase;font-size:.72rem;margin-top:.3rem}
+
+  /* ===== GALERIE ===== */
+  .galerie{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+  .cadre{position:relative;overflow:hidden;border:1px solid var(--or-pale)}
+  .cadre::after{content:'';position:absolute;inset:0;border:2px solid var(--or);opacity:0;
+                transition:opacity .4s ease;pointer-events:none;
+                box-shadow:inset 0 0 30px rgba(201,162,39,.35)}
+  .cadre:hover::after{opacity:1}
+  .cadre img{width:100%;height:320px;object-fit:cover;display:block;
+             transition:transform .6s ease,filter .6s ease}
+  .cadre:hover img{transform:scale(1.07);filter:saturate(1.12) brightness(1.04)}
+
+  /* ===== PROGRAMME — salle royale ===== */
+  #programme{background:
+      radial-gradient(ellipse 80% 50% at 50% 0%,rgba(201,162,39,.14),transparent 60%),
+      var(--noir);max-width:none;position:relative}
+  #programme .titre-section p{color:var(--or-pale)}
+  .prog-wrap{max-width:640px;margin:0 auto}
+  .prog-item{display:flex;gap:1.6rem;padding:1.7rem 0;border-bottom:1px solid rgba(201,162,39,.35);
+             transition:transform .3s ease}
+  .prog-item:hover{transform:translateX(8px)}
+  .prog-item:last-child{border-bottom:none}
+  .prog-heure{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--or-vif);
+              min-width:90px;text-align:right}
+  .prog-item h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--ivoire);margin-bottom:.2rem}
+  .prog-item p{color:rgba(230,217,174,.75)}
+
+  /* ===== LIEU ===== */
+  .lieu-carte{text-align:center}
+  .lieu-carte .adresse{font-family:'Cormorant Garamond',serif;font-size:1.6rem;margin:.5rem 0 1.5rem}
+
+  /* BOUTONS or */
+  .btn{display:inline-block;padding:.95rem 2.6rem;border:1px solid var(--or);color:var(--noir);
+       text-decoration:none;letter-spacing:.18em;text-transform:uppercase;font-size:.75rem;
+       font-weight:500;background:transparent;position:relative;overflow:hidden;
+       transition:color .35s ease,box-shadow .35s ease}
+  .btn::before{content:'';position:absolute;inset:0;
+       background:linear-gradient(110deg,var(--or-fonce),var(--or-vif),var(--or-fonce));
+       transform:translateX(-101%);transition:transform .38s ease;z-index:-1}
+  .btn:hover{color:var(--noir);box-shadow:0 6px 26px rgba(201,162,39,.5)}
+  .btn:hover::before{transform:translateX(0)}
+
+  /* ===== RSVP — sur noir royal ===== */
+  #rsvp{background:
+      radial-gradient(ellipse 80% 50% at 50% 100%,rgba(201,162,39,.14),transparent 60%),
+      var(--noir-2);max-width:none}
+  #rsvp .inner{max-width:620px;margin:0 auto;text-align:center}
+  #rsvp .titre-section p{color:var(--or-pale)}
+  #rsvp form{display:grid;gap:1.1rem;margin-top:2rem;text-align:left}
+  #rsvp label{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--or-vif);font-weight:500}
+  #rsvp input,#rsvp select,#rsvp textarea{width:100%;padding:.9rem;background:rgba(255,253,248,.06);
+      border:1px solid rgba(201,162,39,.45);color:var(--ivoire);
+      font-family:'Montserrat',sans-serif;font-size:.95rem;transition:border-color .3s,box-shadow .3s}
+  #rsvp input:focus,#rsvp select:focus,#rsvp textarea:focus{outline:none;border-color:var(--or-vif);
+      box-shadow:0 0 16px rgba(232,195,77,.3)}
+  #rsvp input::placeholder,#rsvp textarea::placeholder{color:rgba(230,217,174,.4)}
+  #rsvp select{color:var(--ivoire);background-color:#211c14}
+  #rsvp .btn{justify-self:center;margin-top:.6rem;color:var(--or-pale)}
+  #rsvp .btn:hover{color:var(--noir)}
+
+  footer{text-align:center;padding:3rem 1rem;background:var(--noir);border-top:1px solid rgba(201,162,39,.4)}
+  footer .script{font-size:2.6rem;text-transform:none;letter-spacing:normal}
+  footer p{font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;margin-top:.4rem;color:var(--or-pale)}
+
+  /* LIGHTBOX */
+  #lightbox{position:fixed;inset:0;background:rgba(10,8,5,.94);display:none;
+            justify-content:center;align-items:center;z-index:100}
+  #lightbox img{max-width:92vw;max-height:92vh;object-fit:contain;
+                border:1px solid var(--or);padding:8px;background:rgba(255,253,248,.03)}
+  #lightbox.ouvert{display:flex}
+
+  /* ===== MOBILE ===== */
+  @media(max-width:640px){
+    nav{gap:0;justify-content:space-around;padding:.85rem .4rem}
+    nav a{font-size:.62rem;letter-spacing:.12em;padding:.4rem .3rem}
+    header{padding:5.4rem 1rem 3rem}
+    .couronne{width:52px}
+    .the-wedding{letter-spacing:.32em}
+    .arche-cadre::before{inset:-9px}
+    #compte{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem;
+            width:100%;max-width:340px;margin-left:auto;margin-right:auto;margin-top:2rem}
+    #compte div{min-width:0;padding:.9rem .5rem}
+    #compte span{font-size:2rem}
+    section{padding:3.8rem 1.1rem}
+    .titre-section{margin-bottom:2.2rem}
+    .galerie{grid-template-columns:repeat(2,1fr);gap:10px}
+    .cadre img{height:190px}
+    .prog-item{flex-direction:column;gap:.15rem;padding:1.3rem 0}
+    .prog-heure{text-align:left;min-width:0}
+    .prog-item:hover{transform:none}
+    .lieu-carte .adresse{font-size:1.35rem}
+    #rsvp input,#rsvp select,#rsvp textarea{font-size:16px;padding:.95rem} /* évite le zoom iOS */
+    .btn{width:100%;text-align:center;padding:1.05rem 1rem}
+    footer .script{font-size:2.1rem}
+  }
+  @media(max-width:360px){
+    nav a{font-size:.56rem}
+    .galerie{grid-template-columns:1fr}
+    .cadre img{height:260px}
+  }
+</style>
+</head>
+<body>
+
+<div id="curseur"></div>
+<div id="anneau"></div>
+
+<nav>
+  <a href="#accueil">Accueil</a>
+  <a href="#galerie">Galerie</a>
+  <a href="#programme">Programme</a>
+  <a href="#lieu">Lieu</a>
+  <a href="#rsvp">RSVP</a>
+</nav>
+
+<header id="accueil">
+  <!-- Couronne royale -->
+  <svg class="couronne" viewBox="0 0 64 44" fill="currentColor">
+    <path d="M4 36 L8 14 L20 26 L32 6 L44 26 L56 14 L60 36 Z"/>
+    <rect x="4" y="38" width="56" height="4" rx="2"/>
+    <circle cx="8" cy="11" r="3"/><circle cx="32" cy="4" r="3"/><circle cx="56" cy="11" r="3"/>
+  </svg>
+
+  <svg class="flourish" viewBox="0 0 400 60" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+    <path d="M10 38 Q 90 30 140 34"/><path d="M390 38 Q 310 30 260 34"/>
+    <path d="M140 34 C 160 14, 190 14, 200 30 C 210 14, 240 14, 260 34"/>
+    <path d="M140 34 C 160 50, 190 50, 200 36 C 210 50, 240 50, 260 34"/>
+    <ellipse cx="200" cy="14" rx="4" ry="8"/>
+    <circle cx="120" cy="40" r="1.6" fill="currentColor"/><circle cx="106" cy="42" r="1.6" fill="currentColor"/>
+    <circle cx="280" cy="40" r="1.6" fill="currentColor"/><circle cx="294" cy="42" r="1.6" fill="currentColor"/>
+  </svg>
+
+  <p class="the-wedding">The Wedding</p>
+  <h1 class="noms script or-anime">Ibrahim &amp; Fatim</h1>
+
+  <div class="arche-cadre">
+    <img class="arche" id="photo-hero" src="PHOTO-2026-04-02-14-25-46.jpg" alt="Ibrahim et Fatim">
+  </div>
+
+  <p class="date-num">19 &middot; 09 &middot; 26</p>
+  <p class="lieu-ligne">Abidjan &middot; Côte d'Ivoire</p>
+  <p class="hashtag or-anime">#Ibratim2026</p>
+
+  <div id="compte">
+    <div><span id="j">0</span><small>Jours</small></div>
+    <div><span id="h">0</span><small>Heures</small></div>
+    <div><span id="m">0</span><small>Minutes</small></div>
+    <div><span id="s">0</span><small>Secondes</small></div>
+  </div>
+
+  <svg class="flourish" style="margin-top:2.6rem;transform:scaleY(-1)" viewBox="0 0 400 60" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+    <path d="M10 38 Q 90 30 140 34"/><path d="M390 38 Q 310 30 260 34"/>
+    <path d="M140 34 C 160 14, 190 14, 200 30 C 210 14, 240 14, 260 34"/>
+    <path d="M140 34 C 160 50, 190 50, 200 36 C 210 50, 240 50, 260 34"/>
+    <ellipse cx="200" cy="14" rx="4" ry="8"/>
+    <circle cx="120" cy="40" r="1.6" fill="currentColor"/><circle cx="106" cy="42" r="1.6" fill="currentColor"/>
+    <circle cx="280" cy="40" r="1.6" fill="currentColor"/><circle cx="294" cy="42" r="1.6" fill="currentColor"/>
+  </svg>
+</header>
+
+<div class="bande"></div>
+
+<section id="galerie">
+  <div class="titre-section reveal">
+    <h2 class="script">Galerie</h2>
+    <p>Quelques moments de notre histoire</p>
+  </div>
+  <div class="galerie">
+    <div class="cadre reveal"><img src="PHOTO-2026-04-02-14-25-46.jpg" alt="Ibrahim et Fatim" loading="lazy"></div>
+    <div class="cadre reveal"><img src="PHOTO-2026-04-02-14-27-34.jpg" alt="Ibrahim et Fatim" loading="lazy"></div>
+    <div class="cadre reveal"><img src="PHOTO-2026-04-02-14-28-10.jpg" alt="Ibrahim et Fatim" loading="lazy"></div>
+    <div class="cadre reveal"><img src="PHOTO-2026-04-02-14-28-47.jpg" alt="Ibrahim et Fatim" loading="lazy"></div>
+    <div class="cadre reveal"><img src="PHOTO-2026-04-02-20-54-27.jpg" alt="Ibrahim et Fatim" loading="lazy"></div>
+    <div class="cadre reveal"><img src="PHOTO-2026-04-02-21-05-24.jpg" alt="Ibrahim et Fatim" loading="lazy"></div>
+    <div class="cadre reveal"><img src="PHOTO-2026-04-02-21-07-59.jpg" alt="Ibrahim et Fatim" loading="lazy"></div>
+    <div class="cadre reveal"><img src="PHOTO-2026-04-02-21-09-30.jpg" alt="Ibrahim et Fatim" loading="lazy"></div>
+    <div class="cadre reveal"><img src="PHOTO-2026-04-05-18-24-39.jpg" alt="Ibrahim et Fatim" loading="lazy"></div>
+    <div class="cadre reveal"><img src="PHOTO-2026-04-05-18-26-12.jpg" alt="Ibrahim et Fatim" loading="lazy"></div>
+    <div class="cadre reveal"><img src="PHOTO-2026-04-16-21-55-59.jpg" alt="Ibrahim et Fatim" loading="lazy"></div>
+    <div class="cadre reveal"><img src="PHOTO-2026-04-16-21-57-10.jpg" alt="Ibrahim et Fatim" loading="lazy"></div>
+    <div class="cadre reveal"><img src="PHOTO-2026-04-16-22-58-07.jpg" alt="Ibrahim et Fatim" loading="lazy"></div>
+  </div>
+</section>
+
+<div class="bande"></div>
+
+<section id="programme">
+  <div class="titre-section reveal">
+    <h2 class="script or-anime">Programme</h2>
+    <p>Le déroulement de la journée</p>
+  </div>
+  <div class="prog-wrap">
+    <div class="prog-item reveal">
+      <div class="prog-heure">14 h 00</div>
+      <div><h3>Cérémonie</h3><p>Détails à confirmer.</p></div>
+    </div>
+    <div class="prog-item reveal">
+      <div class="prog-heure">17 h 00</div>
+      <div><h3>Cocktail</h3><p>Détails à confirmer.</p></div>
+    </div>
+    <div class="prog-item reveal">
+      <div class="prog-heure">19 h 00</div>
+      <div><h3>Dîner &amp; soirée royale</h3><p>Détails à confirmer.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="bande"></div>
+
+<section id="lieu">
+  <div class="titre-section reveal">
+    <h2 class="script">Le lieu</h2>
+    <p>Où nous retrouver</p>
+  </div>
+  <div class="lieu-carte reveal">
+    <p class="adresse">Abidjan, Côte d'Ivoire<br><span style="font-size:1.05rem">Adresse exacte à venir</span></p>
+    <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Abidjan+Côte+d'Ivoire" target="_blank" rel="noopener">Voir sur la carte</a>
+  </div>
+</section>
+
+<div class="bande"></div>
+
+<section id="rsvp">
+  <div class="inner">
+    <div class="titre-section reveal">
+      <h2 class="script or-anime">RSVP</h2>
+      <p>Merci de confirmer votre présence avant le 19 août 2026</p>
+    </div>
+    <form id="form-rsvp" class="reveal">
+      <div>
+        <label for="nom">Nom complet</label>
+        <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
+      </div>
+      <div>
+        <label for="presence">Serez-vous des nôtres?</label>
+        <select id="presence" name="presence" required>
+          <option value="Oui, avec joie!">Oui, avec joie!</option>
+          <option value="Malheureusement non">Malheureusement non</option>
+        </select>
+      </div>
+      <div>
+        <label for="invites">Nombre de personnes</label>
+        <input type="number" id="invites" name="invites" min="1" max="10" value="1">
+      </div>
+      <div>
+        <label for="message">Message (facultatif)</label>
+        <textarea id="message" name="message" rows="3" placeholder="Un petit mot pour les mariés…"></textarea>
+      </div>
+      <button class="btn" type="submit">Confirmer</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <p class="script or-anime">Ibrahim &amp; Fatim</p>
+  <p>19 &middot; 09 &middot; 26 &nbsp;—&nbsp; #Ibratim2026</p>
+</footer>
+
+<div id="lightbox"><img src="" alt="Photo agrandie"></div>
+
+<script>
+  // ===== Compte à rebours =====
+  const cible = new Date('2026-09-19T14:00:00Z').getTime();
+  function maj(){
+    const d = cible - Date.now();
+    if(d <= 0){ document.getElementById('compte').innerHTML = '<div><span>👑</span><small>C\'est le grand jour!</small></div>'; return; }
+    document.getElementById('j').textContent = Math.floor(d/864e5);
+    document.getElementById('h').textContent = Math.floor(d%864e5/36e5);
+    document.getElementById('m').textContent = Math.floor(d%36e5/6e4);
+    document.getElementById('s').textContent = Math.floor(d%6e4/1e3);
+  }
+  maj(); setInterval(maj,1000);
+
+  // ===== Curseur doré + étincelles =====
+  const fin = matchMedia('(pointer:fine)').matches;
+  if(fin){
+    const c = document.getElementById('curseur'), a = document.getElementById('anneau');
+    let ax=0, ay=0, mx=0, my=0, dernier=0;
+    addEventListener('mousemove', e=>{
+      mx=e.clientX; my=e.clientY;
+      c.style.left=mx+'px'; c.style.top=my+'px';
+      // étincelles dorées (limitées)
+      if(Date.now()-dernier>70){
+        dernier=Date.now();
+        const s=document.createElement('span');
+        s.className='etincelle'; s.textContent='✦';
+        s.style.left=(mx+(Math.random()*18-9))+'px';
+        s.style.top=(my+(Math.random()*18-9))+'px';
+        document.body.appendChild(s);
+        setTimeout(()=>s.remove(),1000);
+      }
+    });
+    (function boucle(){
+      ax+=(mx-ax)*.16; ay+=(my-ay)*.16;
+      a.style.left=ax+'px'; a.style.top=ay+'px';
+      requestAnimationFrame(boucle);
+    })();
+    document.querySelectorAll('a,button,.cadre,input,select,textarea').forEach(el=>{
+      el.addEventListener('mouseenter',()=>document.body.classList.add('survol'));
+      el.addEventListener('mouseleave',()=>document.body.classList.remove('survol'));
+    });
+  } else {
+    // Mobile : gerbe d'étincelles dorées au toucher
+    addEventListener('touchstart', e=>{
+      const t = e.touches[0];
+      for(let i=0;i<5;i++){
+        const s=document.createElement('span');
+        s.className='etincelle'; s.textContent='✦';
+        s.style.left=(t.clientX+(Math.random()*44-22))+'px';
+        s.style.top=(t.clientY+(Math.random()*44-22))+'px';
+        s.style.fontSize=(9+Math.random()*8)+'px';
+        document.body.appendChild(s);
+        setTimeout(()=>s.remove(),1000);
+      }
+    },{passive:true});
+  }
+
+  // ===== Révélation au défilement =====
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach((e,i)=>{
+      if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+  // ===== Parallaxe légère sur la photo en arche =====
+  const hero = document.getElementById('photo-hero');
+  if(fin && hero){
+    addEventListener('mousemove', e=>{
+      const dx=(e.clientX/innerWidth-.5)*10, dy=(e.clientY/innerHeight-.5)*10;
+      hero.style.transform=`translate(${dx}px,${dy}px) scale(1.02)`;
+    });
+  }
+
+  // ===== Lightbox =====
+  const lb = document.getElementById('lightbox'), lbImg = lb.querySelector('img');
+  document.querySelectorAll('.galerie img').forEach(img=>{
+    img.addEventListener('click',()=>{ lbImg.src = img.src; lb.classList.add('ouvert'); });
+  });
+  lb.addEventListener('click',()=> lb.classList.remove('ouvert'));
+
+  // ===== RSVP → courriel prérempli (à remplacer par un vrai formulaire) =====
+  document.getElementById('form-rsvp').addEventListener('submit',e=>{
+    e.preventDefault();
+    const f = e.target;
+    const corps = encodeURIComponent(
+      `Nom : ${f.nom.value}\nPrésence : ${f.presence.value}\nNombre de personnes : ${f.invites.value}\nMessage : ${f.message.value}`
+    );
+    window.location.href = `mailto:CHANGER-COURRIEL@exemple.com?subject=RSVP Mariage Ibrahim et Fatim (Ibratim2026)&body=${corps}`;
+  });
+</script>
+</body>
+</html>
