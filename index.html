@@ -61,6 +61,34 @@
   .bande{height:10px;background:repeating-linear-gradient(90deg,
          var(--or) 0 34px,var(--noir) 34px 44px,var(--or-fonce) 44px 78px,var(--noir) 78px 88px)}
 
+  /* ===== PORTE D'ENTRÉE ===== */
+  body.verrouille{overflow:hidden;height:100vh}
+  #porte{position:fixed;inset:0;z-index:300;display:flex;justify-content:center;align-items:center;
+         text-align:center;padding:1.5rem;
+         background:radial-gradient(ellipse 90% 70% at 50% 0%,rgba(201,162,39,.18),transparent 60%),var(--blanc);
+         transition:opacity .9s ease,visibility .9s}
+  #porte.ouvert{opacity:0;visibility:hidden;pointer-events:none}
+  .porte-noms{font-size:clamp(2.6rem,8vw,4.2rem);line-height:1.1}
+  .porte-sous{letter-spacing:.3em;text-transform:uppercase;font-size:.72rem;margin-top:.4rem;color:var(--texte)}
+  .env{width:min(320px,80vw);aspect-ratio:3/2;margin:2rem auto 0;cursor:pointer;
+       filter:drop-shadow(0 16px 34px rgba(23,21,18,.25));transition:transform .3s ease}
+  .env:hover{transform:translateY(-4px)}
+  #rabat{transform-box:fill-box;transform-origin:50% 0;transition:transform .8s ease .1s}
+  #sceau{transition:opacity .5s ease,transform .5s ease;transform-box:fill-box;transform-origin:center}
+  .env.ouverte #rabat{transform:rotateX(180deg)}
+  .env.ouverte #sceau{opacity:0;transform:scale(.5)}
+  .porte-hint{margin-top:1.2rem;font-family:'Cormorant Garamond',serif;font-style:italic;
+              font-size:1.05rem;color:var(--or-fonce);animation:flotte 3.5s ease-in-out infinite}
+  .porte-code{margin-top:1.4rem;display:none;flex-direction:column;gap:.7rem;align-items:center}
+  .porte-code.visible{display:flex;animation:apparait .7s ease}
+  @keyframes apparait{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .porte-code label{font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--or-fonce);font-weight:600}
+  .porte-code input{padding:.85rem 1rem;width:min(300px,76vw);text-align:center;font-size:16px;
+       letter-spacing:.18em;border:1px solid var(--or);background:var(--ivoire);color:var(--noir);
+       font-family:'Montserrat',sans-serif;text-transform:uppercase}
+  .porte-code input:focus{outline:none;box-shadow:0 0 14px rgba(232,195,77,.4)}
+  #code-err{font-family:'Cormorant Garamond',serif;font-style:italic;color:#a4442c;min-height:1.3em;font-size:1rem}
+
   /* NAV */
   nav{position:fixed;top:0;width:100%;z-index:50;display:flex;justify-content:center;gap:2.2rem;
       padding:1rem;background:rgba(14,12,9,.88);backdrop-filter:blur(8px);
@@ -212,14 +240,43 @@
   }
 </style>
 </head>
-<body>
+<body class="verrouille">
+
+<!-- ===== PORTE D'ENTRÉE : enveloppe + code secret ===== -->
+<div id="porte">
+  <div class="porte-inner">
+    <p class="porte-noms script or-anime">Ibrahim &amp; Fatim</p>
+    <p class="porte-sous">Vous êtes invités &nbsp;—&nbsp; 19 · 09 · 26</p>
+    <div class="env" id="enveloppe" role="button" aria-label="Ouvrir l'enveloppe" tabindex="0">
+      <svg viewBox="0 0 300 200" width="100%" height="100%">
+        <rect x="1" y="1" width="298" height="198" rx="4" fill="#fdfbf5" stroke="#c9a227" stroke-width="1.5"/>
+        <path d="M2 198 L150 96 L298 198" fill="#f7f1e2" stroke="#c9a227" stroke-width="1"/>
+        <path d="M2 2 L60 198 M298 2 L240 198" stroke="#e6d9ae" stroke-width="1" fill="none" opacity="0"/>
+        <g id="rabat">
+          <path d="M1 2 L150 112 L299 2 Z" fill="#f3ecdf" stroke="#c9a227" stroke-width="1.5"/>
+        </g>
+        <g id="sceau">
+          <circle cx="150" cy="108" r="26" fill="#c9a227"/>
+          <circle cx="150" cy="108" r="22" fill="none" stroke="#fff3c4" stroke-width="1" opacity=".7"/>
+          <text x="150" y="118" text-anchor="middle" font-family="Allura, cursive" font-size="26" fill="#fdfbf5">I&amp;F</text>
+        </g>
+      </svg>
+    </div>
+    <p class="porte-hint" id="porte-hint">Touchez le sceau pour ouvrir</p>
+    <div class="porte-code" id="porte-code">
+      <label for="code-input">Code secret</label>
+      <input id="code-input" type="text" placeholder="Inscrit sur votre invitation" autocomplete="off" autocapitalize="characters">
+      <button class="btn" id="code-btn" type="button">Entrer</button>
+      <p id="code-err"></p>
+    </div>
+  </div>
+</div>
 
 <div id="curseur"></div>
 <div id="anneau"></div>
 
 <nav>
   <a href="#accueil">Accueil</a>
-  <a href="#galerie">Galerie</a>
   <a href="#programme">Programme</a>
   <a href="#lieu">Lieu</a>
   <a href="#rsvp">RSVP</a>
@@ -272,30 +329,6 @@
 
 <div class="bande"></div>
 
-<section id="galerie">
-  <div class="titre-section reveal">
-    <h2 class="script">Galerie</h2>
-    <p>Quelques moments de notre histoire</p>
-  </div>
-  <div class="galerie">
-    <div class="cadre reveal"><img src="PHOTO-2026-04-02-14-25-46.jpg" alt="Ibrahim et Fatim" loading="lazy"></div>
-    <div class="cadre reveal"><img src="PHOTO-2026-04-02-14-27-34.jpg" alt="Ibrahim et Fatim" loading="lazy"></div>
-    <div class="cadre reveal"><img src="PHOTO-2026-04-02-14-28-10.jpg" alt="Ibrahim et Fatim" loading="lazy"></div>
-    <div class="cadre reveal"><img src="PHOTO-2026-04-02-14-28-47.jpg" alt="Ibrahim et Fatim" loading="lazy"></div>
-    <div class="cadre reveal"><img src="PHOTO-2026-04-02-20-54-27.jpg" alt="Ibrahim et Fatim" loading="lazy"></div>
-    <div class="cadre reveal"><img src="PHOTO-2026-04-02-21-05-24.jpg" alt="Ibrahim et Fatim" loading="lazy"></div>
-    <div class="cadre reveal"><img src="PHOTO-2026-04-02-21-07-59.jpg" alt="Ibrahim et Fatim" loading="lazy"></div>
-    <div class="cadre reveal"><img src="PHOTO-2026-04-02-21-09-30.jpg" alt="Ibrahim et Fatim" loading="lazy"></div>
-    <div class="cadre reveal"><img src="PHOTO-2026-04-05-18-24-39.jpg" alt="Ibrahim et Fatim" loading="lazy"></div>
-    <div class="cadre reveal"><img src="PHOTO-2026-04-05-18-26-12.jpg" alt="Ibrahim et Fatim" loading="lazy"></div>
-    <div class="cadre reveal"><img src="PHOTO-2026-04-16-21-55-59.jpg" alt="Ibrahim et Fatim" loading="lazy"></div>
-    <div class="cadre reveal"><img src="PHOTO-2026-04-16-21-57-10.jpg" alt="Ibrahim et Fatim" loading="lazy"></div>
-    <div class="cadre reveal"><img src="PHOTO-2026-04-16-22-58-07.jpg" alt="Ibrahim et Fatim" loading="lazy"></div>
-  </div>
-</section>
-
-<div class="bande"></div>
-
 <section id="programme">
   <div class="titre-section reveal">
     <h2 class="script or-anime">Programme</h2>
@@ -303,16 +336,16 @@
   </div>
   <div class="prog-wrap">
     <div class="prog-item reveal">
-      <div class="prog-heure">14 h 00</div>
-      <div><h3>Cérémonie</h3><p>Détails à confirmer.</p></div>
+      <div class="prog-heure">17 sept.</div>
+      <div><h3>Cérémonie religieuse</h3><p>Jeudi 17 septembre 2026 — heure à confirmer.</p></div>
     </div>
     <div class="prog-item reveal">
-      <div class="prog-heure">17 h 00</div>
-      <div><h3>Cocktail</h3><p>Détails à confirmer.</p></div>
+      <div class="prog-heure">19 sept.</div>
+      <div><h3>Cérémonie civile &amp; réception</h3><p>Samedi 19 septembre 2026 — Pavillon Lotus, Abidjan.</p></div>
     </div>
     <div class="prog-item reveal">
-      <div class="prog-heure">19 h 00</div>
-      <div><h3>Dîner &amp; soirée royale</h3><p>Détails à confirmer.</p></div>
+      <div class="prog-heure">✦</div>
+      <div><h3>Code vestimentaire</h3><p>Élégance royale — noir, or et beige.</p></div>
     </div>
   </div>
 </section>
@@ -325,8 +358,8 @@
     <p>Où nous retrouver</p>
   </div>
   <div class="lieu-carte reveal">
-    <p class="adresse">Abidjan, Côte d'Ivoire<br><span style="font-size:1.05rem">Adresse exacte à venir</span></p>
-    <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Abidjan+Côte+d'Ivoire" target="_blank" rel="noopener">Voir sur la carte</a>
+    <p class="adresse">Pavillon Lotus<br><span style="font-size:1.05rem">Riviera M'Pouto, Cocody — Abidjan, Côte d'Ivoire</span></p>
+    <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Pavillon+Lotus+Riviera+M'Pouto+Abidjan" target="_blank" rel="noopener">Voir sur la carte</a>
   </div>
 </section>
 
@@ -368,9 +401,46 @@
   <p>19 &middot; 09 &middot; 26 &nbsp;—&nbsp; #Ibratim2026</p>
 </footer>
 
-<div id="lightbox"><img src="" alt="Photo agrandie"></div>
-
 <script>
+  // ===== Porte d'entrée : enveloppe + code secret =====
+  const CODE_SECRET = 'IBRATIM2026';
+  const porte = document.getElementById('porte');
+  const env = document.getElementById('enveloppe');
+  const boiteCode = document.getElementById('porte-code');
+  const hint = document.getElementById('porte-hint');
+  const codeInput = document.getElementById('code-input');
+  const codeErr = document.getElementById('code-err');
+
+  function deverrouiller(){
+    porte.classList.add('ouvert');
+    document.body.classList.remove('verrouille');
+    sessionStorage.setItem('ibratim-ouvert','1');
+  }
+  function ouvrirEnveloppe(){
+    if(env.classList.contains('ouverte')) return;
+    env.classList.add('ouverte');
+    hint.style.display='none';
+    setTimeout(()=>{ boiteCode.classList.add('visible'); codeInput.focus(); }, 650);
+  }
+  function verifierCode(){
+    const essai = codeInput.value.replace(/[\s\-#]/g,'').toUpperCase();
+    if(essai === CODE_SECRET){
+      codeErr.textContent='';
+      deverrouiller();
+    } else {
+      codeErr.textContent = 'Ce n’est pas le bon code — vérifiez votre invitation.';
+      codeInput.select();
+    }
+  }
+  env.addEventListener('click', ouvrirEnveloppe);
+  env.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' ') ouvrirEnveloppe(); });
+  document.getElementById('code-btn').addEventListener('click', verifierCode);
+  codeInput.addEventListener('keydown', e=>{ if(e.key==='Enter') verifierCode(); });
+  // Déjà déverrouillé dans cette session (ex. retour depuis Messages)
+  if(sessionStorage.getItem('ibratim-ouvert')==='1'){
+    porte.style.transition='none'; deverrouiller();
+  }
+
   // ===== Compte à rebours =====
   const cible = new Date('2026-09-19T14:00:00Z').getTime();
   function maj(){
@@ -443,13 +513,6 @@
       hero.style.transform=`translate(${dx}px,${dy}px) scale(1.02)`;
     });
   }
-
-  // ===== Lightbox =====
-  const lb = document.getElementById('lightbox'), lbImg = lb.querySelector('img');
-  document.querySelectorAll('.galerie img').forEach(img=>{
-    img.addEventListener('click',()=>{ lbImg.src = img.src; lb.classList.add('ouvert'); });
-  });
-  lb.addEventListener('click',()=> lb.classList.remove('ouvert'));
 
   // ===== RSVP → ouvre Messages avec un texto prérempli =====
   const RSVP_TEL = '+15819801252'; // TEST : numéro de William — mettre '+14185733475' (Ibrahim) pour la vraie version
