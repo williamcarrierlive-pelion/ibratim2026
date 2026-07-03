@@ -451,14 +451,24 @@
   });
   lb.addEventListener('click',()=> lb.classList.remove('ouvert'));
 
-  // ===== RSVP → courriel prérempli (à remplacer par un vrai formulaire) =====
+  // ===== RSVP → ouvre Messages avec un texto prérempli =====
+  const RSVP_TEL = '+15819801252'; // TEST : numéro de William — mettre '+14185733475' (Ibrahim) pour la vraie version
+  const RSVP_TEL_AFFICHE = '+1 581 980-1252';
   document.getElementById('form-rsvp').addEventListener('submit',e=>{
     e.preventDefault();
     const f = e.target;
-    const corps = encodeURIComponent(
-      `Nom : ${f.nom.value}\nPrésence : ${f.presence.value}\nNombre de personnes : ${f.invites.value}\nMessage : ${f.message.value}`
-    );
-    window.location.href = `mailto:CHANGER-COURRIEL@exemple.com?subject=RSVP Mariage Ibrahim et Fatim (Ibratim2026)&body=${corps}`;
+    const texte = `💍 RSVP — Mariage Ibrahim & Fatim (19.09.26)\nNom : ${f.nom.value}\nRéponse : ${f.presence.value}\nPersonnes : ${f.invites.value}${f.message.value ? `\nMessage : ${f.message.value}` : ''}`;
+    // Ouvre l'app Messages du visiteur avec le texto prêt à envoyer
+    window.location.href = `sms:${RSVP_TEL}?&body=${encodeURIComponent(texte)}`;
+    // Filet de sécurité si aucune app SMS ne s'ouvre (ex. ordinateur sans Messages)
+    let secours = document.getElementById('rsvp-secours');
+    if(!secours){
+      secours = document.createElement('p');
+      secours.id = 'rsvp-secours';
+      secours.style.cssText = 'margin-top:1rem;font-family:Cormorant Garamond,serif;font-size:1.05rem;color:#e6d9ae';
+      f.appendChild(secours);
+    }
+    secours.innerHTML = `Votre texto est prêt dans votre app Messages. Si rien ne s'est ouvert, envoyez votre réponse au <strong style="color:#e8c34d">${RSVP_TEL_AFFICHE}</strong>.`;
   });
 </script>
 </body>
