@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0e0c09">
 <title>Ibrahim &amp; Fatim — 19.09.26 — #Ibratim2026</title>
+<!-- Aperçu lors du partage (réseaux sociaux / messageries) -->
+<meta property="og:title" content="Ibrahim &amp; Fatim — 19.09.26">
+<meta property="og:description" content="Vous êtes invités · Abidjan, Côte d'Ivoire · #Ibratim2026">
+<meta property="og:image" content="https://williamcarrierlive-pelion.github.io/ibratim2026/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://williamcarrierlive-pelion.github.io/ibratim2026/">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -68,12 +77,11 @@
          background:radial-gradient(ellipse 90% 70% at 50% 0%,rgba(201,162,39,.18),transparent 60%),var(--blanc);
          transition:opacity .9s ease,visibility .9s}
   #porte.ouvert{opacity:0;visibility:hidden;pointer-events:none}
-  .porte-noms{font-size:clamp(2.6rem,8vw,4.2rem);line-height:1.1}
-  .porte-sous{letter-spacing:.3em;text-transform:uppercase;font-size:.72rem;margin-top:.4rem;color:var(--texte)}
+  .porte-titre{font-size:clamp(2.2rem,7vw,3.4rem);line-height:1.15;transition:opacity .5s ease}
   .env{width:min(470px,92vw);aspect-ratio:32/21;margin:3.4rem auto 0;cursor:pointer;
        position:relative;filter:drop-shadow(0 18px 40px rgba(23,21,18,.28));transition:transform .3s ease}
   .env:hover{transform:translateY(-4px)}
-  .env-svg{display:block;width:100%;height:100%}
+  .env-svg{display:block;width:100%;height:100%;overflow:visible} /* le rabat reste visible une fois ouvert */
   #rabat{transform-box:fill-box;transform-origin:50% 0;transition:transform .85s ease .1s}
   #sceau{transition:opacity .5s ease,transform .5s ease;transform-box:fill-box;transform-origin:center;
          filter:drop-shadow(0 3px 6px rgba(23,21,18,.4))}
@@ -98,9 +106,6 @@
   .lettre .btn{width:100%;text-align:center;margin-top:.7rem;padding:.85rem 1rem}
   #code-err{font-family:'Cormorant Garamond',serif;font-style:italic;color:#a4442c;
        min-height:1.3em;font-size:.95rem;margin-top:.45rem;text-align:center}
-  .porte-hint{margin-top:1.3rem;font-family:'Cormorant Garamond',serif;font-style:italic;
-              font-size:1.1rem;color:var(--or-fonce);animation:flotte 3.5s ease-in-out infinite;
-              transition:opacity .4s ease}
 
   /* Petit sceau — rejouer l'animation */
   #rejouer{position:fixed;top:.5rem;right:.7rem;z-index:60;width:38px;height:38px;padding:0;
@@ -265,8 +270,7 @@
 <!-- ===== PORTE D'ENTRÉE : enveloppe + code secret ===== -->
 <div id="porte">
   <div class="porte-inner">
-    <p class="porte-noms script or-anime">Ibrahim &amp; Fatim</p>
-    <p class="porte-sous">Vous êtes invités &nbsp;—&nbsp; 19 · 09 · 26</p>
+    <p class="porte-titre script or-anime" id="porte-hint">Touchez le sceau pour ouvrir</p>
     <div class="env" id="enveloppe" role="button" aria-label="Ouvrir l'enveloppe" tabindex="0">
       <svg class="env-svg" viewBox="0 0 320 210">
         <defs>
@@ -327,7 +331,6 @@
         <p id="code-err"></p>
       </div>
     </div>
-    <p class="porte-hint" id="porte-hint">Touchez le sceau pour ouvrir</p>
   </div>
 </div>
 
@@ -625,4 +628,4 @@
 </script>
 </body>
 </html>
-<!-- v8 -->
+<!-- v9 -->
