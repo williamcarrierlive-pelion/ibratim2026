@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cartes d'invitation — Ibrahim &amp; Fatim — prêt à imprimer</title>
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ================= IMPRESSION =================
+     Format carte : 5 × 7 po (127 × 178 mm), une carte par page.
+     Imprimer : Fichier → Imprimer → marges "Aucune", cocher
+     "Graphiques d'arrière-plan", papier 5x7 (ou A4 et massicot). */
+  :root{
+    --noir:#0d0b08;
+    --or:#c9a227;
+    --or-vif:#e8c34d;
+    --or-pale:#e6d9ae;
+    --ivoire:#fdfbf5;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;
+    -webkit-print-color-adjust:exact !important;print-color-adjust:exact !important}
+  body{background:#3c3c3c;font-family:'Montserrat',sans-serif}
+
+  .carte{width:5in;height:7in;position:relative;overflow:hidden;background:var(--ivoire)}
+
+  /* Aperçu écran */
+  @media screen{
+    body{display:flex;flex-direction:column;align-items:center;gap:40px;padding:40px}
+    .carte{box-shadow:0 20px 60px rgba(0,0,0,.55)}
+    .note-ecran{color:#ddd;font-size:13px;max-width:5in;text-align:center;line-height:1.6}
+  }
+  @media print{
+    body{background:none}
+    .note-ecran{display:none}
+    .carte{page-break-after:always}
+    @page{size:5in 7in;margin:0}
+  }
+
+  .or-degrade{background:linear-gradient(105deg,#8a6d1f 10%,#e8c34d 38%,#fff3c4 50%,#e8c34d 62%,#8a6d1f 90%);
+              -webkit-background-clip:text;background-clip:text;
+              -webkit-text-fill-color:transparent;color:transparent}
+
+  /* ============ CARTE 1 — COUVERTURE MAGAZINE ============ */
+  .mag{background:var(--noir);color:#fff}
+  .mag .photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%}
+  .mag .voile{position:absolute;inset:0;
+        background:linear-gradient(180deg,rgba(13,11,8,.55) 0%,rgba(13,11,8,0) 26%,rgba(13,11,8,0) 55%,rgba(13,11,8,.82) 100%)}
+  .mag .contenu{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
+        text-align:center;padding:.32in .3in}
+  .masthead{font-family:'Cormorant Garamond',serif;font-weight:600;letter-spacing:.14em;
+        font-size:.72in;line-height:1;width:100%}
+  .mag .fil{font-size:.105in;letter-spacing:.32em;text-transform:uppercase;color:var(--or-pale);margin-top:.1in}
+  .mag .accroche-g{position:absolute;left:.3in;top:2.1in;max-width:1.25in;text-align:left;
+        font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.17in;line-height:1.45;
+        color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.8)}
+  .mag .accroche-d{position:absolute;right:.3in;top:3.1in;max-width:1.1in;text-align:right;
+        font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.15in;line-height:1.45;
+        color:var(--or-pale);text-shadow:0 1px 8px rgba(0,0,0,.8)}
+  .mag .bas{margin-top:auto;width:100%;display:flex;flex-direction:column;align-items:center}
+  .monogramme{font-family:'Allura',cursive;font-size:.85in;line-height:.9}
+  .mag .noms{font-size:.14in;letter-spacing:.3em;text-transform:uppercase;color:#fff;margin-top:.06in}
+  .mag .date-ligne{font-size:.11in;letter-spacing:.26em;text-transform:uppercase;color:var(--or-pale);margin-top:.08in}
+  .mag .hashtag{font-family:'Allura',cursive;font-size:.24in;margin-top:.05in}
+
+  /* ============ CARTE 2 — DÉTAILS / RSVP (verso) ============ */
+  .det{background:var(--noir);color:var(--ivoire);display:flex;flex-direction:column;
+       align-items:center;text-align:center;padding:.45in .4in;
+       background-image:radial-gradient(ellipse 90% 45% at 50% 0%,rgba(201,162,39,.18),transparent 60%),
+                        radial-gradient(ellipse 90% 45% at 50% 100%,rgba(201,162,39,.14),transparent 60%)}
+  .det .flourish{width:2.4in;color:var(--or)}
+  .det .titre{font-family:'Allura',cursive;font-size:.5in;margin-top:.12in}
+  .det .sous{font-size:.1in;letter-spacing:.3em;text-transform:uppercase;color:var(--or-pale);margin-top:.04in}
+  .det .bloc{margin-top:.22in}
+  .det .bloc .etq{font-size:.095in;letter-spacing:.3em;text-transform:uppercase;color:var(--or-vif)}
+  .det .bloc .val{font-family:'Cormorant Garamond',serif;font-size:.21in;margin-top:.03in;line-height:1.35}
+  .det .sep{width:.9in;height:1px;background:linear-gradient(90deg,transparent,var(--or),transparent);margin:.16in auto 0}
+  .det .rsvp-zone{margin-top:auto;display:flex;align-items:center;gap:.25in}
+  .qr{width:1in;height:1in;background:#fff;border:1px solid var(--or);padding:.06in;display:flex;
+      align-items:center;justify-content:center}
+  .qr img{width:100%;height:100%;object-fit:contain}
+  .det .rsvp-texte{text-align:left;max-width:2.2in}
+  .det .rsvp-texte .etq{font-size:.1in;letter-spacing:.26em;text-transform:uppercase;color:var(--or-vif)}
+  .det .rsvp-texte p{font-family:'Cormorant Garamond',serif;font-size:.16in;line-height:1.4;margin-top:.04in}
+
+  /* ============ CARTE 3 — SAVE THE DATE (arche) ============ */
+  .std{background:var(--ivoire);color:var(--noir);display:flex;flex-direction:column;
+       align-items:center;text-align:center;padding:.4in .35in}
+  .std .save{font-family:'Cormorant Garamond',serif;font-size:.42in;letter-spacing:.06em;color:var(--noir)}
+  .std .save em{font-family:'Allura',cursive;font-style:normal;font-size:.38in;color:var(--or)}
+  .std .arche{width:2.9in;height:3.62in;object-fit:cover;object-position:center 22%;
+       border-radius:50% 50% 0 0/40% 40% 0 0;border:1px solid var(--noir);padding:.07in;background:#fff;
+       margin-top:.22in}
+  .std .noms-script{font-family:'Allura',cursive;font-size:.62in;line-height:1;margin-top:.18in}
+  .std .date-pts{font-size:.2in;letter-spacing:.34em;font-weight:600;margin-top:.1in;color:var(--noir)}
+  .std .lieu{font-family:'Cormorant Garamond',serif;letter-spacing:.24em;text-transform:uppercase;
+       font-size:.13in;margin-top:.07in;color:#4a4438}
+  .std .hashtag{font-family:'Allura',cursive;font-size:.26in;margin-top:.08in}
+</style>
+</head>
+<body>
+
+<p class="note-ecran">Aperçu écran — à l'impression, chaque carte sort sur sa propre page 5&nbsp;×&nbsp;7&nbsp;po.
+Activer «&nbsp;Graphiques d'arrière-plan&nbsp;» et marges «&nbsp;Aucune&nbsp;» dans la boîte d'impression.</p>
+
+<!-- ============ CARTE 1 : COUVERTURE MAGAZINE ============ -->
+<div class="carte mag">
+  <img class="photo" src="PHOTO-2026-04-02-20-54-27.jpg" alt="Ibrahim et Fatim">
+  <div class="voile"></div>
+  <div class="contenu">
+    <div class="masthead or-degrade">WEDDING</div>
+    <div class="fil">Édition spéciale — Abidjan, Côte d'Ivoire</div>
+    <div class="accroche-g">« Notre bonheur pour toujours commence ici »</div>
+    <div class="accroche-d">Le jour où nous dirons oui</div>
+    <div class="bas">
+      <div class="monogramme or-degrade">I &amp; F</div>
+      <div class="noms">Ibrahim &nbsp;•&nbsp; Fatim</div>
+      <div class="date-ligne">19 septembre 2026</div>
+      <div class="hashtag or-degrade">#Ibratim2026</div>
+    </div>
+  </div>
+</div>
+
+<p class="note-ecran">Carte 2 — verso détails &amp; RSVP. Le QR pointe vers le site d'invitation en ligne.</p>
+
+<!-- ============ CARTE 2 : DÉTAILS / RSVP ============ -->
+<div class="carte det">
+  <svg class="flourish" viewBox="0 0 400 60" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+    <path d="M10 38 Q 90 30 140 34"/><path d="M390 38 Q 310 30 260 34"/>
+    <path d="M140 34 C 160 14, 190 14, 200 30 C 210 14, 240 14, 260 34"/>
+    <path d="M140 34 C 160 50, 190 50, 200 36 C 210 50, 240 50, 260 34"/>
+    <ellipse cx="200" cy="14" rx="4" ry="8"/>
+  </svg>
+  <div class="titre or-degrade">Les détails</div>
+  <div class="sous">Ibrahim &amp; Fatim — 19 · 09 · 26</div>
+
+  <div class="bloc">
+    <div class="etq">La cérémonie</div>
+    <div class="val">Samedi 19 septembre 2026<br>Heure à confirmer</div>
+  </div>
+  <div class="sep"></div>
+  <div class="bloc">
+    <div class="etq">Le lieu</div>
+    <div class="val">Abidjan, Côte d'Ivoire<br>Adresse à venir</div>
+  </div>
+  <div class="sep"></div>
+  <div class="bloc">
+    <div class="etq">Code vestimentaire</div>
+    <div class="val">Élégance royale — touches d'or bienvenues</div>
+  </div>
+
+  <div class="rsvp-zone">
+    <div class="qr">
+      <svg viewBox="0 0 33 33" width="100%" height="100%" shape-rendering="crispEdges"><rect width="33" height="33" fill="#fff"/><path d="M0 0h1v1h-1zM1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM5 0h1v1h-1zM6 0h1v1h-1zM9 0h1v1h-1zM12 0h1v1h-1zM13 0h1v1h-1zM16 0h1v1h-1zM19 0h1v1h-1zM20 0h1v1h-1zM23 0h1v1h-1zM26 0h1v1h-1zM27 0h1v1h-1zM28 0h1v1h-1zM29 0h1v1h-1zM30 0h1v1h-1zM31 0h1v1h-1zM32 0h1v1h-1zM0 1h1v1h-1zM6 1h1v1h-1zM9 1h1v1h-1zM13 1h1v1h-1zM14 1h1v1h-1zM15 1h1v1h-1zM16 1h1v1h-1zM18 1h1v1h-1zM20 1h1v1h-1zM21 1h1v1h-1zM26 1h1v1h-1zM32 1h1v1h-1zM0 2h1v1h-1zM2 2h1v1h-1zM3 2h1v1h-1zM4 2h1v1h-1zM6 2h1v1h-1zM8 2h1v1h-1zM10 2h1v1h-1zM12 2h1v1h-1zM13 2h1v1h-1zM15 2h1v1h-1zM16 2h1v1h-1zM18 2h1v1h-1zM20 2h1v1h-1zM21 2h1v1h-1zM22 2h1v1h-1zM24 2h1v1h-1zM26 2h1v1h-1zM28 2h1v1h-1zM29 2h1v1h-1zM30 2h1v1h-1zM32 2h1v1h-1zM0 3h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM6 3h1v1h-1zM8 3h1v1h-1zM10 3h1v1h-1zM11 3h1v1h-1zM12 3h1v1h-1zM14 3h1v1h-1zM15 3h1v1h-1zM16 3h1v1h-1zM17 3h1v1h-1zM18 3h1v1h-1zM20 3h1v1h-1zM22 3h1v1h-1zM23 3h1v1h-1zM24 3h1v1h-1zM26 3h1v1h-1zM28 3h1v1h-1zM29 3h1v1h-1zM30 3h1v1h-1zM32 3h1v1h-1zM0 4h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM6 4h1v1h-1zM8 4h1v1h-1zM9 4h1v1h-1zM11 4h1v1h-1zM12 4h1v1h-1zM13 4h1v1h-1zM15 4h1v1h-1zM19 4h1v1h-1zM21 4h1v1h-1zM23 4h1v1h-1zM26 4h1v1h-1zM28 4h1v1h-1zM29 4h1v1h-1zM30 4h1v1h-1zM32 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM8 5h1v1h-1zM9 5h1v1h-1zM12 5h1v1h-1zM14 5h1v1h-1zM15 5h1v1h-1zM16 5h1v1h-1zM17 5h1v1h-1zM18 5h1v1h-1zM21 5h1v1h-1zM26 5h1v1h-1zM32 5h1v1h-1zM0 6h1v1h-1zM1 6h1v1h-1zM2 6h1v1h-1zM3 6h1v1h-1zM4 6h1v1h-1zM5 6h1v1h-1zM6 6h1v1h-1zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h1v1h-1zM24 6h1v1h-1zM26 6h1v1h-1zM27 6h1v1h-1zM28 6h1v1h-1zM29 6h1v1h-1zM30 6h1v1h-1zM31 6h1v1h-1zM32 6h1v1h-1zM8 7h1v1h-1zM9 7h1v1h-1zM11 7h1v1h-1zM12 7h1v1h-1zM15 7h1v1h-1zM18 7h1v1h-1zM19 7h1v1h-1zM21 7h1v1h-1zM22 7h1v1h-1zM23 7h1v1h-1zM0 8h1v1h-1zM2 8h1v1h-1zM3 8h1v1h-1zM4 8h1v1h-1zM5 8h1v1h-1zM6 8h1v1h-1zM9 8h1v1h-1zM10 8h1v1h-1zM11 8h1v1h-1zM13 8h1v1h-1zM14 8h1v1h-1zM15 8h1v1h-1zM17 8h1v1h-1zM22 8h1v1h-1zM23 8h1v1h-1zM24 8h1v1h-1zM26 8h1v1h-1zM27 8h1v1h-1zM28 8h1v1h-1zM29 8h1v1h-1zM30 8h1v1h-1zM2 9h1v1h-1zM5 9h1v1h-1zM8 9h1v1h-1zM9 9h1v1h-1zM11 9h1v1h-1zM12 9h1v1h-1zM16 9h1v1h-1zM18 9h1v1h-1zM19 9h1v1h-1zM20 9h1v1h-1zM21 9h1v1h-1zM23 9h1v1h-1zM26 9h1v1h-1zM27 9h1v1h-1zM29 9h1v1h-1zM30 9h1v1h-1zM32 9h1v1h-1zM1 10h1v1h-1zM2 10h1v1h-1zM3 10h1v1h-1zM4 10h1v1h-1zM6 10h1v1h-1zM7 10h1v1h-1zM10 10h1v1h-1zM12 10h1v1h-1zM15 10h1v1h-1zM17 10h1v1h-1zM18 10h1v1h-1zM20 10h1v1h-1zM24 10h1v1h-1zM25 10h1v1h-1zM28 10h1v1h-1zM30 10h1v1h-1zM1 11h1v1h-1zM4 11h1v1h-1zM5 11h1v1h-1zM8 11h1v1h-1zM9 11h1v1h-1zM14 11h1v1h-1zM15 11h1v1h-1zM18 11h1v1h-1zM21 11h1v1h-1zM25 11h1v1h-1zM28 11h1v1h-1zM29 11h1v1h-1zM30 11h1v1h-1zM32 11h1v1h-1zM0 12h1v1h-1zM1 12h1v1h-1zM5 12h1v1h-1zM6 12h1v1h-1zM7 12h1v1h-1zM8 12h1v1h-1zM9 12h1v1h-1zM10 12h1v1h-1zM12 12h1v1h-1zM15 12h1v1h-1zM17 12h1v1h-1zM18 12h1v1h-1zM19 12h1v1h-1zM20 12h1v1h-1zM22 12h1v1h-1zM23 12h1v1h-1zM24 12h1v1h-1zM25 12h1v1h-1zM28 12h1v1h-1zM29 12h1v1h-1zM31 12h1v1h-1zM32 12h1v1h-1zM3 13h1v1h-1zM4 13h1v1h-1zM9 13h1v1h-1zM10 13h1v1h-1zM11 13h1v1h-1zM14 13h1v1h-1zM15 13h1v1h-1zM16 13h1v1h-1zM17 13h1v1h-1zM19 13h1v1h-1zM22 13h1v1h-1zM23 13h1v1h-1zM24 13h1v1h-1zM26 13h1v1h-1zM29 13h1v1h-1zM31 13h1v1h-1zM32 13h1v1h-1zM2 14h1v1h-1zM6 14h1v1h-1zM8 14h1v1h-1zM11 14h1v1h-1zM12 14h1v1h-1zM14 14h1v1h-1zM20 14h1v1h-1zM21 14h1v1h-1zM22 14h1v1h-1zM25 14h1v1h-1zM26 14h1v1h-1zM27 14h1v1h-1zM31 14h1v1h-1zM1 15h1v1h-1zM5 15h1v1h-1zM8 15h1v1h-1zM9 15h1v1h-1zM11 15h1v1h-1zM13 15h1v1h-1zM14 15h1v1h-1zM16 15h1v1h-1zM18 15h1v1h-1zM20 15h1v1h-1zM21 15h1v1h-1zM22 15h1v1h-1zM23 15h1v1h-1zM25 15h1v1h-1zM26 15h1v1h-1zM27 15h1v1h-1zM28 15h1v1h-1zM29 15h1v1h-1zM30 15h1v1h-1zM0 16h1v1h-1zM6 16h1v1h-1zM7 16h1v1h-1zM8 16h1v1h-1zM10 16h1v1h-1zM12 16h1v1h-1zM13 16h1v1h-1zM14 16h1v1h-1zM16 16h1v1h-1zM17 16h1v1h-1zM19 16h1v1h-1zM22 16h1v1h-1zM23 16h1v1h-1zM24 16h1v1h-1zM25 16h1v1h-1zM27 16h1v1h-1zM28 16h1v1h-1zM32 16h1v1h-1zM0 17h1v1h-1zM1 17h1v1h-1zM2 17h1v1h-1zM7 17h1v1h-1zM8 17h1v1h-1zM10 17h1v1h-1zM11 17h1v1h-1zM16 17h1v1h-1zM18 17h1v1h-1zM19 17h1v1h-1zM20 17h1v1h-1zM21 17h1v1h-1zM23 17h1v1h-1zM25 17h1v1h-1zM26 17h1v1h-1zM27 17h1v1h-1zM29 17h1v1h-1zM30 17h1v1h-1zM32 17h1v1h-1zM0 18h1v1h-1zM3 18h1v1h-1zM4 18h1v1h-1zM5 18h1v1h-1zM6 18h1v1h-1zM8 18h1v1h-1zM11 18h1v1h-1zM14 18h1v1h-1zM15 18h1v1h-1zM16 18h1v1h-1zM17 18h1v1h-1zM24 18h1v1h-1zM27 18h1v1h-1zM28 18h1v1h-1zM30 18h1v1h-1zM31 18h1v1h-1zM0 19h1v1h-1zM1 19h1v1h-1zM2 19h1v1h-1zM5 19h1v1h-1zM9 19h1v1h-1zM12 19h1v1h-1zM13 19h1v1h-1zM15 19h1v1h-1zM16 19h1v1h-1zM18 19h1v1h-1zM19 19h1v1h-1zM21 19h1v1h-1zM26 19h1v1h-1zM27 19h1v1h-1zM28 19h1v1h-1zM29 19h1v1h-1zM30 19h1v1h-1zM31 19h1v1h-1zM32 19h1v1h-1zM0 20h1v1h-1zM5 20h1v1h-1zM6 20h1v1h-1zM7 20h1v1h-1zM8 20h1v1h-1zM9 20h1v1h-1zM10 20h1v1h-1zM12 20h1v1h-1zM16 20h1v1h-1zM17 20h1v1h-1zM18 20h1v1h-1zM22 20h1v1h-1zM23 20h1v1h-1zM24 20h1v1h-1zM27 20h1v1h-1zM28 20h1v1h-1zM29 20h1v1h-1zM31 20h1v1h-1zM32 20h1v1h-1zM0 21h1v1h-1zM1 21h1v1h-1zM3 21h1v1h-1zM4 21h1v1h-1zM8 21h1v1h-1zM9 21h1v1h-1zM10 21h1v1h-1zM11 21h1v1h-1zM15 21h1v1h-1zM17 21h1v1h-1zM18 21h1v1h-1zM19 21h1v1h-1zM20 21h1v1h-1zM21 21h1v1h-1zM23 21h1v1h-1zM26 21h1v1h-1zM29 21h1v1h-1zM30 21h1v1h-1zM32 21h1v1h-1zM0 22h1v1h-1zM3 22h1v1h-1zM4 22h1v1h-1zM5 22h1v1h-1zM6 22h1v1h-1zM7 22h1v1h-1zM8 22h1v1h-1zM10 22h1v1h-1zM11 22h1v1h-1zM13 22h1v1h-1zM15 22h1v1h-1zM16 22h1v1h-1zM18 22h1v1h-1zM20 22h1v1h-1zM25 22h1v1h-1zM27 22h1v1h-1zM29 22h1v1h-1zM31 22h1v1h-1zM0 23h1v1h-1zM2 23h1v1h-1zM3 23h1v1h-1zM4 23h1v1h-1zM5 23h1v1h-1zM8 23h1v1h-1zM9 23h1v1h-1zM12 23h1v1h-1zM13 23h1v1h-1zM14 23h1v1h-1zM15 23h1v1h-1zM21 23h1v1h-1zM22 23h1v1h-1zM24 23h1v1h-1zM25 23h1v1h-1zM26 23h1v1h-1zM29 23h1v1h-1zM30 23h1v1h-1zM0 24h1v1h-1zM2 24h1v1h-1zM3 24h1v1h-1zM4 24h1v1h-1zM6 24h1v1h-1zM7 24h1v1h-1zM8 24h1v1h-1zM11 24h1v1h-1zM13 24h1v1h-1zM14 24h1v1h-1zM15 24h1v1h-1zM17 24h1v1h-1zM19 24h1v1h-1zM20 24h1v1h-1zM22 24h1v1h-1zM23 24h1v1h-1zM24 24h1v1h-1zM25 24h1v1h-1zM26 24h1v1h-1zM27 24h1v1h-1zM28 24h1v1h-1zM32 24h1v1h-1zM8 25h1v1h-1zM10 25h1v1h-1zM12 25h1v1h-1zM17 25h1v1h-1zM19 25h1v1h-1zM20 25h1v1h-1zM21 25h1v1h-1zM24 25h1v1h-1zM28 25h1v1h-1zM30 25h1v1h-1zM32 25h1v1h-1zM0 26h1v1h-1zM1 26h1v1h-1zM2 26h1v1h-1zM3 26h1v1h-1zM4 26h1v1h-1zM5 26h1v1h-1zM6 26h1v1h-1zM11 26h1v1h-1zM12 26h1v1h-1zM14 26h1v1h-1zM15 26h1v1h-1zM16 26h1v1h-1zM17 26h1v1h-1zM21 26h1v1h-1zM23 26h1v1h-1zM24 26h1v1h-1zM26 26h1v1h-1zM28 26h1v1h-1zM30 26h1v1h-1zM31 26h1v1h-1zM0 27h1v1h-1zM6 27h1v1h-1zM8 27h1v1h-1zM9 27h1v1h-1zM11 27h1v1h-1zM14 27h1v1h-1zM15 27h1v1h-1zM16 27h1v1h-1zM19 27h1v1h-1zM21 27h1v1h-1zM22 27h1v1h-1zM23 27h1v1h-1zM24 27h1v1h-1zM28 27h1v1h-1zM29 27h1v1h-1zM30 27h1v1h-1zM31 27h1v1h-1zM0 28h1v1h-1zM2 28h1v1h-1zM3 28h1v1h-1zM4 28h1v1h-1zM6 28h1v1h-1zM8 28h1v1h-1zM12 28h1v1h-1zM13 28h1v1h-1zM15 28h1v1h-1zM18 28h1v1h-1zM22 28h1v1h-1zM24 28h1v1h-1zM25 28h1v1h-1zM26 28h1v1h-1zM27 28h1v1h-1zM28 28h1v1h-1zM29 28h1v1h-1zM32 28h1v1h-1zM0 29h1v1h-1zM2 29h1v1h-1zM3 29h1v1h-1zM4 29h1v1h-1zM6 29h1v1h-1zM8 29h1v1h-1zM11 29h1v1h-1zM15 29h1v1h-1zM16 29h1v1h-1zM18 29h1v1h-1zM19 29h1v1h-1zM20 29h1v1h-1zM21 29h1v1h-1zM22 29h1v1h-1zM23 29h1v1h-1zM24 29h1v1h-1zM25 29h1v1h-1zM28 29h1v1h-1zM31 29h1v1h-1zM32 29h1v1h-1zM0 30h1v1h-1zM2 30h1v1h-1zM3 30h1v1h-1zM4 30h1v1h-1zM6 30h1v1h-1zM8 30h1v1h-1zM11 30h1v1h-1zM12 30h1v1h-1zM17 30h1v1h-1zM21 30h1v1h-1zM26 30h1v1h-1zM27 30h1v1h-1zM29 30h1v1h-1zM30 30h1v1h-1zM0 31h1v1h-1zM6 31h1v1h-1zM13 31h1v1h-1zM16 31h1v1h-1zM18 31h1v1h-1zM20 31h1v1h-1zM21 31h1v1h-1zM22 31h1v1h-1zM25 31h1v1h-1zM26 31h1v1h-1zM28 31h1v1h-1zM29 31h1v1h-1zM30 31h1v1h-1zM0 32h1v1h-1zM1 32h1v1h-1zM2 32h1v1h-1zM3 32h1v1h-1zM4 32h1v1h-1zM5 32h1v1h-1zM6 32h1v1h-1zM8 32h1v1h-1zM11 32h1v1h-1zM13 32h1v1h-1zM17 32h1v1h-1zM20 32h1v1h-1zM22 32h1v1h-1zM23 32h1v1h-1zM24 32h1v1h-1zM26 32h1v1h-1zM27 32h1v1h-1zM29 32h1v1h-1zM31 32h1v1h-1z" fill="#0d0b08"/></svg>
+    </div>
+    <div class="rsvp-texte">
+      <div class="etq">RSVP</div>
+      <p>Scannez pour confirmer votre présence avant le 19 août 2026, ou visitez notre site d'invitation.</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
