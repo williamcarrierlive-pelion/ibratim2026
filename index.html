@@ -70,24 +70,37 @@
   #porte.ouvert{opacity:0;visibility:hidden;pointer-events:none}
   .porte-noms{font-size:clamp(2.6rem,8vw,4.2rem);line-height:1.1}
   .porte-sous{letter-spacing:.3em;text-transform:uppercase;font-size:.72rem;margin-top:.4rem;color:var(--texte)}
-  .env{width:min(320px,80vw);aspect-ratio:3/2;margin:2rem auto 0;cursor:pointer;
-       filter:drop-shadow(0 16px 34px rgba(23,21,18,.25));transition:transform .3s ease}
+  .env{width:min(470px,92vw);aspect-ratio:32/21;margin:3.4rem auto 0;cursor:pointer;
+       position:relative;filter:drop-shadow(0 18px 40px rgba(23,21,18,.28));transition:transform .3s ease}
   .env:hover{transform:translateY(-4px)}
-  #rabat{transform-box:fill-box;transform-origin:50% 0;transition:transform .8s ease .1s}
-  #sceau{transition:opacity .5s ease,transform .5s ease;transform-box:fill-box;transform-origin:center}
+  .env-svg{display:block;width:100%;height:100%}
+  #rabat{transform-box:fill-box;transform-origin:50% 0;transition:transform .85s ease .1s}
+  #sceau{transition:opacity .5s ease,transform .5s ease;transform-box:fill-box;transform-origin:center;
+         filter:drop-shadow(0 3px 6px rgba(23,21,18,.4))}
   .env.ouverte #rabat{transform:rotateX(180deg)}
-  .env.ouverte #sceau{opacity:0;transform:scale(.5)}
-  .porte-hint{margin-top:1.2rem;font-family:'Cormorant Garamond',serif;font-style:italic;
-              font-size:1.05rem;color:var(--or-fonce);animation:flotte 3.5s ease-in-out infinite}
-  .porte-code{margin-top:1.4rem;display:none;flex-direction:column;gap:.7rem;align-items:center}
-  .porte-code.visible{display:flex;animation:apparait .7s ease}
-  @keyframes apparait{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-  .porte-code label{font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--or-fonce);font-weight:600}
-  .porte-code input{padding:.85rem 1rem;width:min(300px,76vw);text-align:center;font-size:16px;
-       letter-spacing:.18em;border:1px solid var(--or);background:var(--ivoire);color:var(--noir);
+  .env.ouverte #sceau{opacity:0;transform:scale(.4) rotate(-20deg)}
+  /* La lettre qui sort de l'enveloppe */
+  .lettre{position:absolute;left:50%;top:50%;width:74%;max-width:340px;
+          transform:translate(-50%,-30%) scale(.94);opacity:0;pointer-events:none;z-index:5;
+          background:linear-gradient(180deg,#fffdf8,#faf5e8);border:1px solid var(--or);
+          box-shadow:0 16px 38px rgba(23,21,18,.3);padding:1.5rem 1.4rem 1.2rem;
+          transition:opacity .65s ease .55s,transform .65s ease .55s}
+  .lettre::before{content:'';position:absolute;inset:7px;border:1px solid var(--or-pale);pointer-events:none}
+  .env.ouverte .lettre{opacity:1;transform:translate(-50%,-60%) scale(1);pointer-events:auto}
+  .lettre .mini-couronne{width:36px;height:auto;color:var(--or);display:block;margin:0 auto .35rem;
+          filter:drop-shadow(0 0 6px rgba(232,195,77,.5))}
+  .lettre-titre{font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--or-fonce);
+          font-weight:600;margin-bottom:.75rem;text-align:center}
+  .lettre input{padding:.85rem 1rem;width:100%;text-align:center;font-size:16px;
+       letter-spacing:.18em;border:1px solid var(--or);background:#fffdf8;color:var(--noir);
        font-family:'Montserrat',sans-serif;text-transform:uppercase}
-  .porte-code input:focus{outline:none;box-shadow:0 0 14px rgba(232,195,77,.4)}
-  #code-err{font-family:'Cormorant Garamond',serif;font-style:italic;color:#a4442c;min-height:1.3em;font-size:1rem}
+  .lettre input:focus{outline:none;box-shadow:0 0 14px rgba(232,195,77,.45)}
+  .lettre .btn{width:100%;text-align:center;margin-top:.7rem;padding:.85rem 1rem}
+  #code-err{font-family:'Cormorant Garamond',serif;font-style:italic;color:#a4442c;
+       min-height:1.3em;font-size:.95rem;margin-top:.45rem;text-align:center}
+  .porte-hint{margin-top:1.3rem;font-family:'Cormorant Garamond',serif;font-style:italic;
+              font-size:1.1rem;color:var(--or-fonce);animation:flotte 3.5s ease-in-out infinite;
+              transition:opacity .4s ease}
 
   /* NAV */
   nav{position:fixed;top:0;width:100%;z-index:50;display:flex;justify-content:center;gap:2.2rem;
@@ -248,27 +261,66 @@
     <p class="porte-noms script or-anime">Ibrahim &amp; Fatim</p>
     <p class="porte-sous">Vous êtes invités &nbsp;—&nbsp; 19 · 09 · 26</p>
     <div class="env" id="enveloppe" role="button" aria-label="Ouvrir l'enveloppe" tabindex="0">
-      <svg viewBox="0 0 300 200" width="100%" height="100%">
-        <rect x="1" y="1" width="298" height="198" rx="4" fill="#fdfbf5" stroke="#c9a227" stroke-width="1.5"/>
-        <path d="M2 198 L150 96 L298 198" fill="#f7f1e2" stroke="#c9a227" stroke-width="1"/>
-        <path d="M2 2 L60 198 M298 2 L240 198" stroke="#e6d9ae" stroke-width="1" fill="none" opacity="0"/>
+      <svg class="env-svg" viewBox="0 0 320 210">
+        <defs>
+          <radialGradient id="or-sceau" cx="38%" cy="32%" r="78%">
+            <stop offset="0%" stop-color="#f6e09a"/>
+            <stop offset="45%" stop-color="#d4af37"/>
+            <stop offset="100%" stop-color="#8a6d1f"/>
+          </radialGradient>
+          <linearGradient id="papier" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#fefcf6"/>
+            <stop offset="100%" stop-color="#f4ecd8"/>
+          </linearGradient>
+          <linearGradient id="papier-rabat" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#f9f3e2"/>
+            <stop offset="100%" stop-color="#efe4c6"/>
+          </linearGradient>
+        </defs>
+        <!-- dos de l'enveloppe + doublure intérieure -->
+        <rect x="2" y="2" width="316" height="206" rx="6" fill="url(#papier)" stroke="#c9a227" stroke-width="1.5"/>
+        <path d="M6 6 L160 122 L314 6 Z" fill="#efe5c9"/>
+        <!-- plis latéraux -->
+        <path d="M4 8 L132 106 L4 202 Z" fill="url(#papier)" stroke="#dcca94" stroke-width="1"/>
+        <path d="M316 8 L188 106 L316 202 Z" fill="url(#papier)" stroke="#dcca94" stroke-width="1"/>
+        <!-- poche avant -->
+        <path d="M4 206 L160 98 L316 206 Z" fill="url(#papier)" stroke="#c9a227" stroke-width="1.2"/>
+        <!-- liséré doré -->
+        <rect x="2" y="2" width="316" height="206" rx="6" fill="none" stroke="#c9a227" stroke-width="1.5"/>
+        <!-- rabat -->
         <g id="rabat">
-          <path d="M1 2 L150 112 L299 2 Z" fill="#f3ecdf" stroke="#c9a227" stroke-width="1.5"/>
+          <path d="M2 4 L160 126 L318 4 Z" fill="url(#papier-rabat)" stroke="#c9a227" stroke-width="1.5"/>
+          <path d="M14 10 L160 118 L306 10" fill="none" stroke="#dcca94" stroke-width="1" opacity=".8"/>
         </g>
+        <!-- sceau de cire doré -->
         <g id="sceau">
-          <circle cx="150" cy="108" r="26" fill="#c9a227"/>
-          <circle cx="150" cy="108" r="22" fill="none" stroke="#fff3c4" stroke-width="1" opacity=".7"/>
-          <text x="150" y="118" text-anchor="middle" font-family="Allura, cursive" font-size="26" fill="#fdfbf5">I&amp;F</text>
+          <circle cx="160" cy="120" r="31" fill="url(#or-sceau)"/>
+          <circle cx="160" cy="120" r="31" fill="none" stroke="#8a6d1f" stroke-width="1.2"/>
+          <circle cx="160" cy="120" r="25" fill="none" stroke="#fff3c4" stroke-width="1" opacity=".75"/>
+          <g fill="#8a6d1f" opacity=".55">
+            <circle cx="160" cy="87" r="1.7"/><circle cx="176" cy="91" r="1.7"/><circle cx="188" cy="103" r="1.7"/>
+            <circle cx="193" cy="120" r="1.7"/><circle cx="188" cy="137" r="1.7"/><circle cx="176" cy="149" r="1.7"/>
+            <circle cx="160" cy="153" r="1.7"/><circle cx="144" cy="149" r="1.7"/><circle cx="132" cy="137" r="1.7"/>
+            <circle cx="127" cy="120" r="1.7"/><circle cx="132" cy="103" r="1.7"/><circle cx="144" cy="91" r="1.7"/>
+          </g>
+          <path d="M152 103 L154 97 L158 101 L160 95 L162 101 L166 97 L168 103 Z" fill="#fdfbf5" opacity=".9"/>
+          <text x="160" y="132" text-anchor="middle" font-family="Allura, cursive" font-size="27" fill="#fdfbf5">I&amp;F</text>
         </g>
       </svg>
+      <!-- La lettre avec le code, cachée dans l'enveloppe -->
+      <div class="lettre" id="lettre">
+        <svg class="mini-couronne" viewBox="0 0 64 44" fill="currentColor">
+          <path d="M4 36 L8 14 L20 26 L32 6 L44 26 L56 14 L60 36 Z"/>
+          <rect x="4" y="38" width="56" height="4" rx="2"/>
+          <circle cx="8" cy="11" r="3"/><circle cx="32" cy="4" r="3"/><circle cx="56" cy="11" r="3"/>
+        </svg>
+        <p class="lettre-titre">Code secret</p>
+        <input id="code-input" type="text" placeholder="Inscrit sur votre invitation" autocomplete="off" autocapitalize="characters">
+        <button class="btn" id="code-btn" type="button">Entrer</button>
+        <p id="code-err"></p>
+      </div>
     </div>
     <p class="porte-hint" id="porte-hint">Touchez le sceau pour ouvrir</p>
-    <div class="porte-code" id="porte-code">
-      <label for="code-input">Code secret</label>
-      <input id="code-input" type="text" placeholder="Inscrit sur votre invitation" autocomplete="off" autocapitalize="characters">
-      <button class="btn" id="code-btn" type="button">Entrer</button>
-      <p id="code-err"></p>
-    </div>
   </div>
 </div>
 
@@ -406,7 +458,6 @@
   const CODE_SECRET = 'IBRATIM2026';
   const porte = document.getElementById('porte');
   const env = document.getElementById('enveloppe');
-  const boiteCode = document.getElementById('porte-code');
   const hint = document.getElementById('porte-hint');
   const codeInput = document.getElementById('code-input');
   const codeErr = document.getElementById('code-err');
@@ -419,8 +470,8 @@
   function ouvrirEnveloppe(){
     if(env.classList.contains('ouverte')) return;
     env.classList.add('ouverte');
-    hint.style.display='none';
-    setTimeout(()=>{ boiteCode.classList.add('visible'); codeInput.focus(); }, 650);
+    hint.style.opacity='0';
+    setTimeout(()=>{ codeInput.focus(); }, 1250);
   }
   function verifierCode(){
     const essai = codeInput.value.replace(/[\s\-#]/g,'').toUpperCase();
@@ -536,5 +587,4 @@
 </script>
 </body>
 </html>
-
-<!-- v6 -->
+<!-- v7 -->
