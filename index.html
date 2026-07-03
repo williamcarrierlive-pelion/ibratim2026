@@ -114,6 +114,31 @@
   #rejouer:hover{transform:scale(1.12) rotate(-8deg)}
   #rejouer svg{width:100%;height:100%;display:block}
 
+  /* ===== Ornements générés (laurier, coins, pont, pavillon) ===== */
+  .coin-p{position:absolute;width:120px;height:auto;pointer-events:none;z-index:2}
+  .coin-p.tl{top:10px;left:10px}
+  .coin-p.tr{top:10px;right:10px;transform:scaleX(-1)}
+  .coin-p.bl{bottom:10px;left:10px;transform:scaleY(-1)}
+  .coin-p.br{bottom:10px;right:10px;transform:scale(-1,-1)}
+  .pont-porte,.pont-hero{position:absolute;left:0;right:0;bottom:0;width:100%;object-fit:cover;
+      object-position:center 30%;mix-blend-mode:multiply;pointer-events:none;
+      -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 50%);
+      mask-image:linear-gradient(180deg,transparent 0%,#000 50%)}
+  .pont-porte{height:180px;opacity:.85;z-index:1}
+  .pont-hero{height:160px;opacity:.7}
+  .pavillon-arche{width:min(300px,70vw);aspect-ratio:10/7;object-fit:cover;display:block;
+      border-radius:50% 50% 0 0/58% 58% 0 0;border:1px solid var(--or);padding:6px;
+      background:#fffdf6;margin:0 auto 1.4rem;box-shadow:0 12px 30px rgba(30,27,23,.18)}
+  .laurier-rsvp{width:150px;height:auto;display:block;margin:0 auto -56px;
+      filter:drop-shadow(0 0 10px rgba(232,195,77,.35));position:relative;z-index:0}
+  #rsvp .titre-section h2{position:relative;z-index:1}
+  @media(max-width:640px){
+    .coin-p{width:76px}
+    .pont-porte{height:120px}
+    .pont-hero{height:110px}
+    .laurier-rsvp{width:120px;margin-bottom:-46px}
+  }
+
   /* NAV */
   nav{position:fixed;top:0;width:100%;z-index:50;display:flex;justify-content:center;gap:2.2rem;
       padding:1rem;background:rgba(14,12,9,.88);backdrop-filter:blur(8px);
@@ -269,6 +294,11 @@
 
 <!-- ===== PORTE D'ENTRÉE : enveloppe + code secret ===== -->
 <div id="porte">
+  <img class="coin-p tl" src="coin.png" alt="">
+  <img class="coin-p tr" src="coin.png" alt="">
+  <img class="coin-p bl" src="coin.png" alt="">
+  <img class="coin-p br" src="coin.png" alt="">
+  <img class="pont-porte" src="pont.jpg" alt="">
   <div class="porte-inner">
     <p class="porte-titre script or-anime" id="porte-hint">Touchez le sceau pour ouvrir</p>
     <div class="env" id="enveloppe" role="button" aria-label="Ouvrir l'enveloppe" tabindex="0">
@@ -405,6 +435,7 @@
     <circle cx="120" cy="40" r="1.6" fill="currentColor"/><circle cx="106" cy="42" r="1.6" fill="currentColor"/>
     <circle cx="280" cy="40" r="1.6" fill="currentColor"/><circle cx="294" cy="42" r="1.6" fill="currentColor"/>
   </svg>
+  <img class="pont-hero" src="pont.jpg" alt="">
 </header>
 
 <div class="bande"></div>
@@ -438,6 +469,7 @@
     <p>Où nous retrouver</p>
   </div>
   <div class="lieu-carte reveal">
+    <img class="pavillon-arche" src="pavillon.jpg" alt="Pavillon Lotus">
     <p class="adresse">Pavillon Lotus<br><span style="font-size:1.05rem">Riviera M'Pouto, Cocody — Abidjan, Côte d'Ivoire</span></p>
     <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Pavillon+Lotus+Riviera+M'Pouto+Abidjan" target="_blank" rel="noopener">Voir sur la carte</a>
   </div>
@@ -448,6 +480,7 @@
 <section id="rsvp">
   <div class="inner">
     <div class="titre-section reveal">
+      <img class="laurier-rsvp" src="laurier.png" alt="">
       <h2 class="script or-anime">RSVP</h2>
       <p>Merci de confirmer votre présence avant le 19 août 2026</p>
     </div>
@@ -607,8 +640,8 @@
   }
 
   // ===== RSVP → ouvre Messages avec un texto prérempli =====
-  const RSVP_TEL = '+15819801252'; // TEST : numéro de William — mettre '+14185733475' (Ibrahim) pour la vraie version
-  const RSVP_TEL_AFFICHE = '+1 581 980-1252';
+  const RSVP_TEL = '+14185733475'; // Ibrahim
+  const RSVP_TEL_AFFICHE = '+1 418 573-3475';
   document.getElementById('form-rsvp').addEventListener('submit',e=>{
     e.preventDefault();
     const f = e.target;
@@ -628,4 +661,4 @@
 </script>
 </body>
 </html>
-<!-- v10 -->
+<!-- v22 -->
