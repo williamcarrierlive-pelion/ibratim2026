@@ -170,8 +170,11 @@
          transition:transform .5s ease;will-change:transform}
   .arche-cadre::before{content:'';position:absolute;inset:-14px;border:1px solid var(--or);
          border-radius:50% 50% 0 0 / 38% 38% 0 0;opacity:.6;pointer-events:none}
-  .citation{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.2rem;
-        color:var(--or-fonce);margin-top:1.1rem;max-width:40ch;line-height:1.5}
+  .arche-cadre .citation{position:absolute;left:10px;right:10px;bottom:10px;margin:0;
+        padding:2.6rem 1rem 1.1rem;font-family:'Cormorant Garamond',serif;font-style:italic;
+        font-size:1.08rem;line-height:1.45;color:#f4ecd8;text-align:center;
+        text-shadow:0 1px 8px rgba(0,0,0,.85);
+        background:linear-gradient(180deg,transparent 0%,rgba(14,12,9,.82) 78%)}
   header .date-num{font-weight:600;letter-spacing:.28em;font-size:1.15rem;text-transform:uppercase;
         color:var(--noir);margin-top:.9rem}
   .cta-hero{margin-top:1.5rem}
@@ -423,9 +426,8 @@
 
   <div class="arche-cadre">
     <img class="arche" id="photo-hero" src="PHOTO-2026-04-02-14-25-46.jpg" alt="Ibrahim et Fatim">
+    <p class="citation">« Deux âmes. Un engagement.<br>Une vie à écrire ensemble. »</p>
   </div>
-
-  <p class="citation">« Deux âmes. Un engagement. Une vie à écrire ensemble. »</p>
   <p class="date-num">17 &ndash; 19 septembre 2026</p>
   <p class="lieu-ligne">Abidjan &middot; Côte d'Ivoire</p>
   <p class="hashtag or-anime">#Ibratim2026</p>
@@ -638,4 +640,4 @@
 </script>
 </body>
 </html>
-<!-- v25 -->
+<!-- v26 -->
