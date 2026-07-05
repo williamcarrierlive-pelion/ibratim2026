@@ -129,9 +129,10 @@
   .pavillon-arche{width:min(300px,70vw);aspect-ratio:10/7;object-fit:cover;display:block;
       border-radius:50% 50% 0 0/58% 58% 0 0;border:1px solid var(--or);padding:6px;
       background:#fffdf6;margin:0 auto 1.4rem;box-shadow:0 12px 30px rgba(30,27,23,.18)}
-  .laurier-rsvp{width:150px;height:auto;display:block;margin:0 auto -56px;
-      filter:drop-shadow(0 0 10px rgba(232,195,77,.35));position:relative;z-index:0}
-  #rsvp .titre-section h2{position:relative;z-index:1}
+  .laurier-wrap{position:relative;width:190px;margin:0 auto .4rem}
+  .laurier-wrap img{width:100%;height:auto;display:block;filter:drop-shadow(0 0 10px rgba(232,195,77,.35))}
+  .laurier-wrap h2{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+      font-size:2.5rem !important;padding-top:10px;margin:0}
   @media(max-width:640px){
     .coin-p{width:76px}
     .pont-porte{height:120px}
@@ -169,7 +170,12 @@
          transition:transform .5s ease;will-change:transform}
   .arche-cadre::before{content:'';position:absolute;inset:-14px;border:1px solid var(--or);
          border-radius:50% 50% 0 0 / 38% 38% 0 0;opacity:.6;pointer-events:none}
-  header .date-num{font-weight:600;letter-spacing:.4em;font-size:1.3rem;color:var(--noir);margin-top:.8rem}
+  .citation{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.2rem;
+        color:var(--or-fonce);margin-top:1.1rem;max-width:40ch;line-height:1.5}
+  header .date-num{font-weight:600;letter-spacing:.28em;font-size:1.15rem;text-transform:uppercase;
+        color:var(--noir);margin-top:.9rem}
+  .cta-hero{margin-top:1.5rem}
+  @media(max-width:640px){.cta-hero{width:auto;padding:1rem 2.2rem}}
   .hashtag{font-family:'Allura',cursive;font-size:2rem;margin-top:.3rem}
   header .lieu-ligne{font-family:'Cormorant Garamond',serif;letter-spacing:.28em;text-transform:uppercase;
                      font-size:.95rem;margin-top:.8rem;color:var(--texte)}
@@ -236,6 +242,9 @@
       var(--noir-2);max-width:none}
   #rsvp .inner{max-width:620px;margin:0 auto;text-align:center}
   #rsvp .titre-section p{color:var(--or-pale)}
+  .typeform-cadre{margin-top:2rem;border:1px solid rgba(201,162,39,.45);
+      background:rgba(255,253,248,.04);padding:10px;min-height:460px}
+  .typeform-cadre>div[data-tf-live]{min-height:440px}
   #rsvp form{display:grid;gap:1.1rem;margin-top:2rem;text-align:left}
   #rsvp label{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--or-vif);font-weight:500}
   #rsvp input,#rsvp select,#rsvp textarea{width:100%;padding:.9rem;background:rgba(255,253,248,.06);
@@ -416,9 +425,11 @@
     <img class="arche" id="photo-hero" src="PHOTO-2026-04-02-14-25-46.jpg" alt="Ibrahim et Fatim">
   </div>
 
-  <p class="date-num">19 &middot; 09 &middot; 26</p>
+  <p class="citation">« Deux âmes. Un engagement. Une vie à écrire ensemble. »</p>
+  <p class="date-num">17 &ndash; 19 septembre 2026</p>
   <p class="lieu-ligne">Abidjan &middot; Côte d'Ivoire</p>
   <p class="hashtag or-anime">#Ibratim2026</p>
+  <a class="btn cta-hero" href="#rsvp">Confirmer ma présence</a>
 
   <div id="compte">
     <div><span id="j">0</span><small>Jours</small></div>
@@ -480,32 +491,16 @@
 <section id="rsvp">
   <div class="inner">
     <div class="titre-section reveal">
-      <img class="laurier-rsvp" src="laurier.png" alt="">
-      <h2 class="script or-anime">RSVP</h2>
+      <div class="laurier-wrap">
+        <img src="laurier.png" alt="">
+        <h2 class="script or-anime">RSVP</h2>
+      </div>
       <p>Merci de confirmer votre présence avant le 19 août 2026</p>
     </div>
-    <form id="form-rsvp" class="reveal">
-      <div>
-        <label for="nom">Nom complet</label>
-        <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
-      </div>
-      <div>
-        <label for="presence">Serez-vous des nôtres?</label>
-        <select id="presence" name="presence" required>
-          <option value="Oui, avec joie!">Oui, avec joie!</option>
-          <option value="Malheureusement non">Malheureusement non</option>
-        </select>
-      </div>
-      <div>
-        <label for="invites">Nombre de personnes</label>
-        <input type="number" id="invites" name="invites" min="1" max="10" value="1">
-      </div>
-      <div>
-        <label for="message">Message (facultatif)</label>
-        <textarea id="message" name="message" rows="3" placeholder="Un petit mot pour les mariés…"></textarea>
-      </div>
-      <button class="btn" type="submit">Confirmer</button>
-    </form>
+    <div class="typeform-cadre reveal">
+      <div data-tf-live="01KWQY4GVF5VA49TC3SGVPGPR7"></div>
+      <script src="//embed.typeform.com/next/embed.js"></script>
+    </div>
   </div>
 </section>
 
@@ -639,26 +634,8 @@
     });
   }
 
-  // ===== RSVP → ouvre Messages avec un texto prérempli =====
-  const RSVP_TEL = '+14185733475'; // Ibrahim
-  const RSVP_TEL_AFFICHE = '+1 418 573-3475';
-  document.getElementById('form-rsvp').addEventListener('submit',e=>{
-    e.preventDefault();
-    const f = e.target;
-    const texte = `💍 RSVP — Mariage Ibrahim & Fatim (19.09.26)\nNom : ${f.nom.value}\nRéponse : ${f.presence.value}\nPersonnes : ${f.invites.value}${f.message.value ? `\nMessage : ${f.message.value}` : ''}`;
-    // Ouvre l'app Messages du visiteur avec le texto prêt à envoyer
-    window.location.href = `sms:${RSVP_TEL}?&body=${encodeURIComponent(texte)}`;
-    // Filet de sécurité si aucune app SMS ne s'ouvre (ex. ordinateur sans Messages)
-    let secours = document.getElementById('rsvp-secours');
-    if(!secours){
-      secours = document.createElement('p');
-      secours.id = 'rsvp-secours';
-      secours.style.cssText = 'margin-top:1rem;font-family:Cormorant Garamond,serif;font-size:1.05rem;color:#e6d9ae';
-      f.appendChild(secours);
-    }
-    secours.innerHTML = `Votre texto est prêt dans votre app Messages. Si rien ne s'est ouvert, envoyez votre réponse au <strong style="color:#e8c34d">${RSVP_TEL_AFFICHE}</strong>.`;
-  });
+
 </script>
 </body>
 </html>
-<!-- v22 -->
+<!-- v24 -->\n
