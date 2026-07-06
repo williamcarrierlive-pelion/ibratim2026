@@ -71,16 +71,15 @@
         var(--ivoire);
        color:#2e2617;display:flex;flex-direction:column;align-items:center;text-align:center;
        padding:.42in .42in .34in}
-  .det::before{content:'';position:absolute;inset:.13in;border:1px solid rgba(201,162,39,.7);pointer-events:none}
+  .cadre-or{position:absolute;left:.13in;top:.13in;right:.13in;bottom:.13in;border:1px solid rgba(201,162,39,.7);z-index:1}
   /* Coins dorés */
-  .coin{position:absolute;width:.92in;height:auto;z-index:1;pointer-events:none}
+  .coin{position:absolute;width:.92in;height:.92in;z-index:1}
   .coin.tl{top:.1in;left:.1in}
   .coin.tr{top:.1in;right:.1in}
   .coin.bl{bottom:.1in;left:.1in}
   .coin.br{bottom:.1in;right:.1in}
   /* Pont d'Abidjan aquarelle au bas */
-  .pont-aquarelle{position:absolute;left:0;right:0;bottom:0;width:5in;height:1.45in;
-      object-fit:cover;opacity:.96}
+  .pont-aquarelle{position:absolute;left:0;right:0;bottom:0;width:5in;height:1.45in;opacity:.96}
   /* Couronne de laurier + monogramme */
   .couronne-mono{position:relative;width:1.32in;margin:0 auto}
   .couronne-mono img{width:100%;height:auto;display:block}
@@ -102,7 +101,7 @@
   .date-sep{width:1px;background:linear-gradient(180deg,transparent,var(--or),transparent)}
   /* Lieu — image en arche + infos */
   .lieu-bloc{margin-top:.2in;display:flex;flex-direction:row;justify-content:center;align-items:center;gap:.26in}
-  .lieu-bloc .arche{width:1.48in;height:1.02in;object-fit:cover}
+  .lieu-bloc .arche{width:1.48in;height:1.02in}
   .lieu-txt{text-align:right}
   .lieu-bloc .l-nom{font-family:'Playfair Display',serif;font-weight:600;font-size:.19in;
       letter-spacing:.08em;text-transform:uppercase;color:#a8842a}
@@ -146,13 +145,14 @@
 
 <!-- ============ CARTE 2 : PAGE INTÉRIEURE ============ -->
 <div class="carte det" data-document-role="page" data-label="Verso — Invitation & infos">
-  <img class="coin tl" src="https://raw.githubusercontent.com/ibratim2026/ibratim2026.github.io/main/coin.png" alt="">
-  <img class="coin tr" src="https://raw.githubusercontent.com/ibratim2026/ibratim2026.github.io/main/coin-tr.png" alt="">
-  <img class="coin bl" src="https://raw.githubusercontent.com/ibratim2026/ibratim2026.github.io/main/coin-bl.png" alt="">
-  <img class="coin br" src="https://raw.githubusercontent.com/ibratim2026/ibratim2026.github.io/main/coin-br.png" alt="">
-  <img class="pont-aquarelle" src="https://raw.githubusercontent.com/ibratim2026/ibratim2026.github.io/main/pont-ado-fade.png" alt="Pont ADO, Abidjan">
+  <div class="cadre-or"></div>
+  <div class="coin tl" style="background-image:url(https://raw.githubusercontent.com/ibratim2026/ibratim2026.github.io/main/coin.png);background-size:contain;background-repeat:no-repeat;background-position:center;"></div>
+  <div class="coin tr" style="background-image:url(https://raw.githubusercontent.com/ibratim2026/ibratim2026.github.io/main/coin-tr.png);background-size:contain;background-repeat:no-repeat;background-position:center;"></div>
+  <div class="coin bl" style="background-image:url(https://raw.githubusercontent.com/ibratim2026/ibratim2026.github.io/main/coin-bl.png);background-size:contain;background-repeat:no-repeat;background-position:center;"></div>
+  <div class="coin br" style="background-image:url(https://raw.githubusercontent.com/ibratim2026/ibratim2026.github.io/main/coin-br.png);background-size:contain;background-repeat:no-repeat;background-position:center;"></div>
+  <div class="pont-aquarelle" style="background-image:url(https://raw.githubusercontent.com/ibratim2026/ibratim2026.github.io/main/pont-ado-fade.png);background-size:cover;background-position:center"></div>
   <div class="couronne-mono">
-    <img src="https://raw.githubusercontent.com/ibratim2026/ibratim2026.github.io/main/laurier.png" alt="">
+    <div style="width:1.32in;height:1.1in;background-image:url(https://raw.githubusercontent.com/ibratim2026/ibratim2026.github.io/main/laurier.png);background-size:contain;background-repeat:no-repeat;background-position:center;"></div>
     <div class="noms-couronne">Fatim <span class="script">&amp;</span> Ibrahim</div>
   </div>
   <div class="convier">ont l'honneur de vous convier à la célébration de leur mariage</div>
@@ -178,10 +178,10 @@
       <div class="l-nom">Pavillon Lotus</div>
       <div class="l-adresse">Riviera M'Pouto, Cocody<br>Abidjan, Côte d'Ivoire</div>
     </div>
-    <img class="arche" src="https://raw.githubusercontent.com/ibratim2026/ibratim2026.github.io/main/pavillon-arche.png" alt="Pavillon Lotus">
+    <div class="arche" style="background-image:url(https://raw.githubusercontent.com/ibratim2026/ibratim2026.github.io/main/pavillon-arche.png);background-size:contain;background-repeat:no-repeat;background-position:center;"></div>
   </div>
   <div class="rsvp-zone">
-    <div class="qr"><img src="https://raw.githubusercontent.com/ibratim2026/ibratim2026.github.io/main/qr.png" alt="QR" style="width:100%;height:100%"></div>
+    <div class="qr" style="background-image:url(https://raw.githubusercontent.com/ibratim2026/ibratim2026.github.io/main/qr.png);background-size:contain;background-repeat:no-repeat;background-position:center;background-origin:content-box"></div>
     <div class="rsvp-texte">
       <div class="etq">Scannez pour confirmer votre présence</div>
       <p>et découvrir tous les détails de notre célébration.</p>
