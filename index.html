@@ -125,7 +125,7 @@
       -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 50%);
       mask-image:linear-gradient(180deg,transparent 0%,#000 50%)}
   .pont-porte{height:180px;opacity:.85;z-index:1}
-  .pont-hero{height:160px;opacity:.7}
+  .pont-hero{height:230px;opacity:.88}
   .pavillon-arche{width:min(300px,70vw);aspect-ratio:10/7;object-fit:cover;display:block;
       border-radius:50% 50% 0 0/58% 58% 0 0;border:1px solid var(--or);padding:6px;
       background:#fffdf6;margin:0 auto 1.4rem;box-shadow:0 12px 30px rgba(30,27,23,.18)}
@@ -136,7 +136,7 @@
   @media(max-width:640px){
     .coin-p{width:76px}
     .pont-porte{height:120px}
-    .pont-hero{height:110px}
+    .pont-hero{height:160px}
     .laurier-rsvp{width:120px;margin-bottom:-46px}
   }
 
@@ -172,7 +172,7 @@
          border-radius:50% 50% 0 0 / 38% 38% 0 0;opacity:.6;pointer-events:none}
   .arche-cadre .citation{position:absolute;left:10px;right:10px;bottom:10px;margin:0;
         padding:2.6rem 1rem 1.1rem;font-family:'Cormorant Garamond',serif;font-style:italic;
-        font-size:1.08rem;line-height:1.45;color:#f4ecd8;text-align:center;
+        font-size:1.24rem;line-height:1.45;color:var(--or-vif);text-align:center;
         text-shadow:0 1px 8px rgba(0,0,0,.85);
         background:linear-gradient(180deg,transparent 0%,rgba(14,12,9,.82) 78%)}
   .mot-accueil{max-width:620px;margin:1.6rem auto 0;font-family:'Cormorant Garamond',serif;
@@ -183,7 +183,11 @@
         text-transform:uppercase;color:var(--noir)}
   header .date-num{margin-top:1.8rem}
   header .lieu-ligne{margin-top:.55rem}
-  .cta-hero{margin-top:1.5rem}
+  .cta-hero{margin-top:1.5rem;
+        background:linear-gradient(110deg,var(--or-fonce),var(--or-vif) 45%,var(--or-fonce));
+        border:1px solid var(--or-fonce);color:var(--noir);font-weight:600;
+        box-shadow:0 4px 18px rgba(201,162,39,.35)}
+  .cta-hero::before{background:linear-gradient(110deg,var(--or-vif),#fff3c4,var(--or-vif))}
   @media(max-width:640px){.cta-hero{width:auto;padding:1rem 2.2rem}}
   .hashtag{font-family:'Allura',cursive;font-size:2rem;margin-top:1.6rem}
 
@@ -654,4 +658,4 @@
 </script>
 </body>
 </html>
-<!-- v29 -->
+<!-- v30 -->
