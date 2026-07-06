@@ -36,44 +36,34 @@
               -webkit-text-fill-color:transparent;color:transparent}
   .script{font-family:'Allura',cursive;font-weight:400}
 
-  /* ============ CARTE 1 — COUVERTURE VOGUE ============ */
+  /* ============ CARTE 1 — COUVERTURE WEDDING ============ */
   .mag{background:var(--brun);color:#fff}
   .mag .photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;
               filter:sepia(.18) saturate(1.04) brightness(.97)}
   .mag .voile{position:absolute;inset:0;
-        background:linear-gradient(180deg,rgba(26,19,11,.42) 0%,rgba(26,19,11,.06) 26%,rgba(26,19,11,0) 48%,rgba(26,19,11,.86) 100%)}
-  .mag .contenu{position:absolute;inset:0;padding:.26in .3in .3in}
+        background:linear-gradient(180deg,rgba(26,19,11,.46) 0%,rgba(26,19,11,.08) 24%,rgba(26,19,11,0) 46%,rgba(26,19,11,.82) 100%)}
+  .mag .contenu{position:absolute;inset:0;padding:.3in .3in .3in}
   /* Masthead façon Didot */
-  .masthead{font-family:'Playfair Display',serif;font-weight:500;letter-spacing:.045em;
-        font-size:1.06in;line-height:.95;text-align:center;width:100%}
-  .mag .sur-masthead{display:flex;justify-content:space-between;align-items:baseline;
-        font-size:.092in;letter-spacing:.26em;text-transform:uppercase;color:#f4ecd8;margin-bottom:.05in}
-  .mag .sur-masthead b{color:var(--or-vif);font-weight:600}
-  /* Cover lines */
-  .mag .lignes-g{position:absolute;left:.3in;top:1.92in;text-align:left;max-width:1.6in}
-  .mag .lignes-g .l1{font-size:.12in;line-height:1.75;letter-spacing:.12em;text-transform:uppercase;
-        color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.9)}
-  .mag .lignes-g .l1 b{color:var(--or-vif);font-weight:600}
-  .mag .lignes-g .l2{margin-top:.22in;font-family:'Cormorant Garamond',serif;font-style:italic;
-        font-size:.16in;line-height:1.5;color:var(--or-pale);text-shadow:0 1px 10px rgba(0,0,0,.9)}
-  .mag .lignes-d{position:absolute;right:.3in;top:3.28in;text-align:right;max-width:1.5in;
-        text-shadow:0 1px 10px rgba(0,0,0,.9)}
-  .mag .lignes-d .t{font-size:.115in;letter-spacing:.16em;text-transform:uppercase;color:var(--or-vif);font-weight:600}
-  .mag .lignes-d .s{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.145in;
-        line-height:1.5;color:#f4ecd8;margin-top:.04in}
-  .mag .edition{position:absolute;left:.3in;top:4.62in;text-align:left;text-shadow:0 1px 10px rgba(0,0,0,.9)}
-  .mag .edition .t{font-size:.1in;letter-spacing:.2em;text-transform:uppercase;color:var(--or-pale)}
-  .mag .edition .v{font-size:.135in;letter-spacing:.16em;text-transform:uppercase;color:#fff;font-weight:600;margin-top:.02in}
-  .mag .edition .w{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.14in;color:var(--or-pale);margin-top:.02in}
+  .masthead{font-family:'Playfair Display',serif;font-weight:500;letter-spacing:.06em;
+        font-size:.78in;line-height:1;text-align:center;width:100%}
+  .mag .sous-masthead{text-align:center;font-size:.095in;letter-spacing:.3em;text-transform:uppercase;
+        color:#f4ecd8;margin-top:.1in;text-shadow:0 1px 8px rgba(0,0,0,.8)}
+  /* Citations gauche / droite */
+  .mag .lignes-g{position:absolute;left:.3in;top:2.5in;text-align:left;max-width:1.45in;
+        font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.17in;line-height:1.5;
+        color:#f4ecd8;text-shadow:0 1px 10px rgba(0,0,0,.9)}
+  .mag .lignes-d{position:absolute;right:.3in;top:3.55in;text-align:right;max-width:1.35in;
+        font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.17in;line-height:1.5;
+        color:#f4ecd8;text-shadow:0 1px 10px rgba(0,0,0,.9)}
   /* Bas de couverture */
-  .mag .bas{position:absolute;left:.3in;right:.3in;bottom:.28in;text-align:center}
-  .mag .noms{font-family:'Playfair Display',serif;font-weight:500;font-size:.4in;letter-spacing:.04em;color:#fff}
-  .mag .noms .et{font-family:'Allura',cursive;font-size:.4in;vertical-align:-.04in;padding:0 .04in}
-  .mag .filet{width:2.2in;height:1px;margin:.08in auto;
-        background:linear-gradient(90deg,transparent,var(--or-vif),transparent)}
-  .mag .date-ligne{font-size:.15in;letter-spacing:.3em;text-transform:uppercase;color:var(--or-vif);font-weight:600}
-  .mag .lieu-ligne{font-size:.105in;letter-spacing:.22em;text-transform:uppercase;color:#f4ecd8;margin-top:.05in}
-  .mag .hashtag{font-family:'Allura',cursive;font-size:.2in;margin-top:.04in}
+  .mag .bas{position:absolute;left:.3in;right:.3in;bottom:.26in;text-align:center}
+  .mag .initiales{font-family:'Allura',cursive;font-size:.72in;line-height:1;
+        text-shadow:0 2px 14px rgba(0,0,0,.55)}
+  .mag .noms{font-size:.16in;letter-spacing:.32em;text-transform:uppercase;color:#fff;
+        font-weight:500;margin-top:.1in}
+  .mag .noms .pt{color:var(--or-vif);padding:0 .06in}
+  .mag .edition-ligne{font-size:.115in;letter-spacing:.28em;text-transform:uppercase;color:#f4ecd8;margin-top:.07in}
+  .mag .hashtag{font-family:'Allura',cursive;font-size:.24in;margin-top:.05in}
 
   /* ============ CARTE 2 — PAGE INTÉRIEURE MAGAZINE ============ */
   .det{background:
@@ -102,9 +92,9 @@
   .noms-couronne .script{font-size:.24in;color:#a8842a;padding:0 .03in}
   .convier{font-family:'Montserrat',sans-serif;font-weight:500;font-size:.09in;
       letter-spacing:.28em;text-transform:uppercase;color:#6d5a2a;margin-top:.14in}
-    .det .intro{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.142in;line-height:1.52;
-              max-width:3.5in;margin-top:.14in;color:#4a3d22}
-  .det .sep{width:1in;height:1px;background:linear-gradient(90deg,transparent,var(--or),transparent);margin:.16in auto}
+    .det .intro{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.132in;line-height:1.5;
+              max-width:3.7in;margin-top:.12in;color:#4a3d22}
+  .det .sep{width:1in;height:1px;background:linear-gradient(90deg,transparent,var(--or),transparent);margin:.12in auto}
   /* Dates — deux colonnes uniformes */
   .dates-row{display:flex;justify-content:center;align-items:stretch;gap:.32in;margin-top:.1in}
   .date-col{text-align:center;min-width:1.5in}
@@ -145,30 +135,16 @@
   <img class="photo" src="PHOTO-2026-04-02-20-54-27.jpg" alt="Fatim et Ibrahim">
   <div class="voile"></div>
   <div class="contenu">
-    <div class="sur-masthead"><span><b>Wedding</b> Edition</span><span>Septembre 2026</span></div>
-    <div class="masthead or-degrade">VOGUE</div>
+    <div class="masthead or-degrade">WEDDING</div>
+    <div class="sous-masthead">Édition spéciale — Abidjan, Côte d'Ivoire</div>
 
-    <div class="lignes-g">
-      <div class="l1">Notre <b>histoire</b>.<br>Notre <b>avenir</b>.<br>Notre <b>promesse</b>.</div>
-      <div class="l2">Deux âmes.<br>Un engagement.<br>Une vie à écrire ensemble.</div>
-    </div>
-
-    <div class="lignes-d">
-      <div class="t">Une célébration<br>de l'amour</div>
-      <div class="s">Entourés de nos familles et de nos amis, nous célébrons notre amour.</div>
-    </div>
-
-    <div class="edition">
-      <div class="t">Édition spéciale</div>
-      <div class="v">Abidjan</div>
-      <div class="w">Côte d'Ivoire — là où tout commence…</div>
-    </div>
+    <div class="lignes-g">« Notre bonheur<br>pour toujours<br>commence ici »</div>
+    <div class="lignes-d">Le jour où nous<br>dirons oui</div>
 
     <div class="bas">
-      <div class="noms">FATIM <span class="et or-degrade">&amp;</span> IBRAHIM</div>
-      <div class="filet"></div>
-      <div class="date-ligne">19 septembre 2026</div>
-      <div class="lieu-ligne">Réception — Pavillon Lotus · Abidjan, Côte d'Ivoire</div>
+      <div class="initiales or-degrade">I <span style="font-size:.5in">&amp;</span> F</div>
+      <div class="noms">IBRAHIM <span class="pt">·</span> FATIM</div>
+      <div class="edition-ligne">Édition Septembre 2026</div>
       <div class="hashtag or-degrade">#Ibratim2026</div>
     </div>
   </div>
@@ -188,8 +164,9 @@
     <div class="noms-couronne">Fatim <span class="script">&amp;</span> Ibrahim</div>
   </div>
   <div class="convier">ont l'honneur de vous convier à la célébration de leur mariage</div>
-  <p class="intro">Notre histoire ne commence pas ce jour-là… C'est avec une immense joie que nous vous
-  invitons à partager ce moment unique, entourés de ceux qui comptent le plus pour nous.</p>
+  <p class="intro">Notre histoire ne commence pas ce jour-là. Elle est le fruit d'une rencontre,
+  d'une amitié devenue amour et d'un engagement choisi chaque jour. C'est avec une immense joie
+  que nous vous invitons à partager ce moment unique, entourés de ceux qui comptent le plus pour nous.</p>
   <div class="sep"></div>
   <div class="dates-row">
     <div class="date-col">
@@ -223,3 +200,4 @@
 
 </body>
 </html>
+<!-- c8 -->
