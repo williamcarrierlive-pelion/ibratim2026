@@ -274,6 +274,15 @@
   #rsvp select{color:var(--ivoire);background-color:#211c14}
   #rsvp .btn{justify-self:center;margin-top:.6rem;color:var(--or-pale)}
   #rsvp .btn:hover{color:var(--noir)}
+  #rsvp .btn:disabled{opacity:.55;pointer-events:none}
+  #rsvp .cache{display:none}
+  #rsvp-etat{text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;
+      font-size:1.05rem;min-height:1.4em;margin:0}
+  #rsvp-etat.err{color:#e08a70}
+  #rsvp-merci{display:none;margin-top:2rem;border:1px solid rgba(201,162,39,.45);
+      background:rgba(255,253,248,.04);padding:2.8rem 1.5rem;text-align:center}
+  #rsvp-merci .script{font-size:2.6rem}
+  #rsvp-merci p{color:var(--or-pale);margin-top:.4rem}
 
   footer{text-align:center;padding:3rem 1rem;background:var(--noir);border-top:1px solid rgba(201,162,39,.4)}
   footer .script{font-size:2.6rem;text-transform:none;letter-spacing:normal}
@@ -533,9 +542,42 @@
       </div>
       <p>Merci de confirmer votre présence avant le 19 août 2026</p>
     </div>
-    <div class="typeform-cadre reveal">
-      <div data-tf-live="01KWQY4GVF5VA49TC3SGVPGPR7"></div>
-      <script src="//embed.typeform.com/next/embed.js"></script>
+    <form id="form-rsvp" class="reveal" autocomplete="off">
+      <div>
+        <label for="rsvp-nom">Nom complet</label>
+        <input id="rsvp-nom" name="nom" type="text" required placeholder="Votre prénom et nom">
+      </div>
+      <div>
+        <label for="rsvp-presence">Serez-vous des nôtres ?</label>
+        <select id="rsvp-presence" name="presence" required>
+          <option value="" disabled selected>Choisissez une réponse</option>
+          <option>Oui, avec joie</option>
+          <option>Non, avec regret</option>
+        </select>
+      </div>
+      <div id="champ-nombre">
+        <label for="rsvp-nombre">Combien de personnes ?</label>
+        <select id="rsvp-nombre" name="nombre">
+          <option selected>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+        </select>
+      </div>
+      <div id="champ-plusun" class="cache">
+        <label for="rsvp-plusun">Si avec un +1, indiquez le nom de la personne</label>
+        <input id="rsvp-plusun" name="plusun" type="text" placeholder="Nom de votre accompagnateur·trice">
+      </div>
+      <div>
+        <label for="rsvp-message">Message (facultatif)</label>
+        <textarea id="rsvp-message" name="message" rows="4" placeholder="Un petit mot pour les mariés, une allergie à signaler…"></textarea>
+      </div>
+      <button class="btn" id="rsvp-btn" type="submit">Confirmer ma réponse</button>
+      <p id="rsvp-etat"></p>
+    </form>
+    <div id="rsvp-merci">
+      <p class="script or-anime">Merci !</p>
+      <p>Votre réponse est bien enregistrée.<br>Nous avons hâte de célébrer avec vous. ✦</p>
     </div>
   </div>
 </section>
@@ -661,6 +703,43 @@
   },{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
+  // ===== RSVP → Google Sheet (via Google Apps Script) =====
+  const RSVP_URL = 'https://script.google.com/macros/s/AKfycbxmsje1JTsFT5eEMmVveHjSFcKs4KKaRbTMZm8C0b2RdzVbHwwymhcFh6PSioV0YtcJ/exec';
+  const formRsvp = document.getElementById('form-rsvp');
+  const selPresence = document.getElementById('rsvp-presence');
+  const selNombre = document.getElementById('rsvp-nombre');
+  const champNombre = document.getElementById('champ-nombre');
+  const champPlusun = document.getElementById('champ-plusun');
+  const btnRsvp = document.getElementById('rsvp-btn');
+  const etatRsvp = document.getElementById('rsvp-etat');
+
+  function majChampsRsvp(){
+    const absent = selPresence.value.indexOf('Non') === 0;
+    champNombre.classList.toggle('cache', absent);
+    champPlusun.classList.toggle('cache', absent || parseInt(selNombre.value,10) < 2);
+  }
+  selPresence.addEventListener('change', majChampsRsvp);
+  selNombre.addEventListener('change', majChampsRsvp);
+
+  formRsvp.addEventListener('submit', e=>{
+    e.preventDefault();
+    btnRsvp.disabled = true;
+    etatRsvp.className=''; etatRsvp.textContent='Envoi en cours…';
+    const donnees = new FormData(formRsvp);
+    if(selPresence.value.indexOf('Non') === 0){ donnees.set('nombre',''); donnees.set('plusun',''); }
+    fetch(RSVP_URL, {method:'POST', body:donnees})
+      .then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); })
+      .then(()=>{
+        formRsvp.style.display='none';
+        document.getElementById('rsvp-merci').style.display='block';
+      })
+      .catch(()=>{
+        btnRsvp.disabled=false;
+        etatRsvp.className='err';
+        etatRsvp.textContent='Oups, l’envoi a échoué. Vérifiez votre connexion et réessayez.';
+      });
+  });
+
   // ===== Parallaxe légère sur la photo en arche =====
   const hero = document.getElementById('photo-hero');
   if(fin && hero){
@@ -674,4 +753,4 @@
 </script>
 </body>
 </html>
-<!-- v32 -->
+<!-- v33 — formulaire RSVP → Google Sheet -->
