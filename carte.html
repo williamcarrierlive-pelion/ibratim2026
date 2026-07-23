@@ -95,44 +95,44 @@
   .coin.tr{top:calc(var(--w)*.024);right:calc(var(--w)*.024);transform:scaleX(-1)}
   .coin.bl{bottom:calc(var(--w)*.024);left:calc(var(--w)*.024);transform:scaleY(-1)}
   .coin.br{bottom:calc(var(--w)*.024);right:calc(var(--w)*.024);transform:scale(-1,-1)}
-  .pont-bas{position:absolute;left:0;right:0;bottom:0;width:100%;height:calc(var(--h)*.225);
+  .pont-bas{position:absolute;left:0;right:0;bottom:0;width:100%;height:calc(var(--h)*.16);
     object-fit:cover;object-position:center 62%;opacity:.95;
     -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 55%);
     mask-image:linear-gradient(180deg,transparent 0%,#000 55%)}
   .int-inner{position:absolute;inset:0;z-index:4;display:flex;flex-direction:column;align-items:center;
-    text-align:center;padding:calc(var(--w)*.075) calc(var(--w)*.1) calc(var(--w)*.06)}
-  .couronne{position:relative;width:calc(var(--w)*.3)}
+    text-align:center;padding:calc(var(--w)*.06) calc(var(--w)*.09) calc(var(--w)*.05)}
+  .couronne{position:relative;width:calc(var(--w)*.24)}
   .couronne img{width:100%;height:auto;display:block}
   .noms-couronne{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-    font-family:'Playfair Display',serif;font-weight:600;font-size:calc(var(--w)*.055);color:var(--brun);
+    font-family:'Playfair Display',serif;font-weight:600;font-size:calc(var(--w)*.046);color:var(--brun);
     padding-top:calc(var(--w)*.012);white-space:nowrap}
   .noms-couronne .esp{font-size:calc(var(--w)*.05);color:var(--or-fonce);padding:0 calc(var(--w)*.008)}
-  .intro{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:calc(var(--w)*.0385);line-height:1.42;
-    color:#4a3d22;margin-top:calc(var(--w)*.035)}
+  .intro{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:calc(var(--w)*.033);line-height:1.32;
+    color:#4a3d22;margin-top:calc(var(--w)*.022)}
   .intro b{font-weight:600}
-  .script-titre{font-family:'Allura',cursive;font-size:calc(var(--w)*.085);color:var(--or-fonce);
-    line-height:1;margin-top:calc(var(--w)*.045)}
-  .date-caps{font-size:calc(var(--w)*.03);letter-spacing:.26em;text-transform:uppercase;color:var(--brun);
-    font-weight:500;margin-top:calc(var(--w)*.02)}
-  .ligne-h{display:flex;align-items:baseline;gap:calc(var(--w)*.02);margin-top:calc(var(--w)*.02);
+  .script-titre{font-family:'Allura',cursive;font-size:calc(var(--w)*.072);color:var(--or-fonce);
+    line-height:1;margin-top:calc(var(--w)*.026)}
+  .date-caps{font-size:calc(var(--w)*.028);letter-spacing:.24em;text-transform:uppercase;color:var(--brun);
+    font-weight:500;margin-top:calc(var(--w)*.012)}
+  .ligne-h{display:flex;align-items:baseline;gap:calc(var(--w)*.018);margin-top:calc(var(--w)*.011);
     font-family:'Cormorant Garamond',serif}
-  .ligne-h .h{font-family:'Playfair Display',serif;font-weight:500;font-size:calc(var(--w)*.052);color:var(--or-fonce);white-space:nowrap}
-  .ligne-h .d{font-style:italic;font-size:calc(var(--w)*.041);color:#4a3d22;text-align:left}
-  .lieu-flex{display:flex;align-items:center;gap:calc(var(--w)*.045);margin-top:calc(var(--w)*.018)}
+  .ligne-h .h{font-family:'Playfair Display',serif;font-weight:500;font-size:calc(var(--w)*.046);color:var(--or-fonce);white-space:nowrap}
+  .ligne-h .d{font-style:italic;font-size:calc(var(--w)*.036);color:#4a3d22;text-align:left}
+  .lieu-flex{display:flex;align-items:center;gap:calc(var(--w)*.04);margin-top:calc(var(--w)*.01)}
   .lieu-txt{text-align:right}
-  .lieu-nom{font-family:'Playfair Display',serif;font-weight:600;font-size:calc(var(--w)*.049);
+  .lieu-nom{font-family:'Playfair Display',serif;font-weight:600;font-size:calc(var(--w)*.042);
     letter-spacing:.06em;color:var(--or-fonce)}
-  .lieu-adresse{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:calc(var(--w)*.039);
+  .lieu-adresse{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:calc(var(--w)*.034);
     line-height:1.4;color:#4a3d22;margin-top:calc(var(--w)*.008)}
-  .lieu-flex img{width:calc(var(--w)*.32);height:calc(var(--w)*.235);object-fit:cover;
+  .lieu-flex img{width:calc(var(--w)*.26);height:calc(var(--w)*.19);object-fit:cover;
     border-radius:50% 50% 0 0/62% 62% 0 0;border:1px solid var(--or);padding:calc(var(--w)*.01);background:#fffdf6}
   .rsvp-zone{margin-top:auto;display:flex;align-items:center;gap:calc(var(--w)*.04);z-index:5}
-  .rsvp-zone .qr{width:calc(var(--w)*.17);height:calc(var(--w)*.17);background:#fff;padding:calc(var(--w)*.012);
+  .rsvp-zone .qr{width:calc(var(--w)*.15);height:calc(var(--w)*.15);background:#fff;padding:calc(var(--w)*.012);
     border:1px solid var(--or)}
   .rsvp-zone .qr img{width:100%;height:100%;display:block}
   .rsvp-txt{text-align:left}
   .rsvp-txt .etq{font-size:calc(var(--w)*.028);letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:#6d5a2a}
-  .rsvp-txt p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:calc(var(--w)*.036);color:#4a3d22;margin-top:calc(var(--w)*.006)}
+  .rsvp-txt p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:calc(var(--w)*.032);color:#4a3d22;margin-top:calc(var(--w)*.006)}
   .code{display:inline-block;font-size:calc(var(--w)*.028);letter-spacing:.16em;text-transform:uppercase;font-weight:600;
     color:var(--brun);border:1px solid var(--or);padding:calc(var(--w)*.008) calc(var(--w)*.02);
     background:rgba(255,253,246,.75);margin-top:calc(var(--w)*.012)}
@@ -199,7 +199,7 @@
     <!-- Couverture qui tourne -->
     <div class="cover" id="cover">
       <div class="face recto">
-        <img class="fond" src="couverture-fond-1015.jpg" alt="Ibrahim et Fatim">
+        <img class="fond" src="PHOTO-2026-04-02-14-25-46.jpg" alt="Ibrahim et Fatim">
         <div class="voile"></div>
         <div class="contenu">
           <div class="masthead">WEDDING</div>
