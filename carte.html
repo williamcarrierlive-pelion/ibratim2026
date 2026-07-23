@@ -18,13 +18,12 @@
 <meta name="twitter:description" content="Touchez la carte pour l'ouvrir · 19 septembre 2026 · Abidjan">
 <meta name="twitter:image" content="https://ibratim2026.github.io/og-image.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --or:#c9a227; --or-vif:#e8c34d; --or-fonce:#a8842a; --or-pale:#e6d9ae;
-    --ivoire:#faf6ec; --noir:#0e0c09; --brun:#2e2617;
+    --or:#c9a227; --or-vif:#e8c34d; --or-pale:#e6d9ae; --noir:#0e0c09;
     /* largeur d'une carte (ratio 2:3). Une seule page à la fois -> jamais de débordement. */
-    --w:min(340px, 86vw, calc((100dvh - 190px) / 1.5));
+    --w:min(340px, 86vw, calc((100dvh - 180px) / 1.5));
     --h:calc(var(--w) * 1.5);
   }
   *{margin:0;padding:0;box-sizing:border-box}
@@ -45,101 +44,22 @@
   .hint{font-size:clamp(.62rem,2.6vw,.72rem);letter-spacing:.24em;text-transform:uppercase;
     color:rgba(230,217,174,.75);text-align:center}
 
-  /* ===== flip card ===== */
+  /* ===== flip card : deux images (recto/verso) ===== */
   .scene{perspective:1800px;-webkit-perspective:1800px;width:var(--w);height:var(--h)}
   .card{position:relative;width:100%;height:100%;transform-style:preserve-3d;cursor:pointer;
     transition:transform 1.05s cubic-bezier(.6,.05,.28,.99)}
   .card.ouvert{transform:rotateY(-180deg)}
   .face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;
-    overflow:hidden;box-shadow:0 22px 60px rgba(0,0,0,.6)}
+    border-radius:6px;overflow:hidden;box-shadow:0 22px 60px rgba(0,0,0,.6)}
+  .face img{display:block;width:100%;height:100%;object-fit:cover}
+  .verso{transform:rotateY(180deg)}
 
-  /* ---- recto : couverture ---- */
-  .recto{background:#1a130b}
-  .recto .fond{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 28%;
-    filter:sepia(.18) saturate(1.04) brightness(.97)}
-  .recto .voile{position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,19,11,.46) 0%,rgba(26,19,11,.08) 24%,rgba(26,19,11,0) 46%,rgba(26,19,11,.82) 100%)}
-  .recto .contenu{position:absolute;inset:0;padding:calc(var(--w)*.08)}
-  .masthead{font-family:'Playfair Display',serif;font-weight:500;letter-spacing:.06em;
-    font-size:calc(var(--w)*.16);line-height:1;text-align:center;color:var(--or-vif)}
-  .sous-masthead{text-align:center;font-size:calc(var(--w)*.026);letter-spacing:.3em;text-transform:uppercase;
-    color:#f4ecd8;margin-top:calc(var(--w)*.025);text-shadow:0 1px 8px rgba(0,0,0,.8)}
-  .lignes-g,.lignes-d{position:absolute;font-family:'Cormorant Garamond',serif;font-style:italic;
-    font-size:calc(var(--w)*.047);line-height:1.5;color:#f4ecd8;text-shadow:0 1px 10px rgba(0,0,0,.9)}
-  .lignes-g{left:calc(var(--w)*.08);top:37%;text-align:left;max-width:44%}
-  .lignes-d{right:calc(var(--w)*.08);top:56%;text-align:right;max-width:40%}
-  .bas{position:absolute;left:calc(var(--w)*.08);right:calc(var(--w)*.08);bottom:calc(var(--w)*.055);text-align:center}
-  .initiales{font-family:'Allura',cursive;font-size:calc(var(--w)*.155);line-height:1;color:var(--or-vif);
-    text-shadow:0 2px 14px rgba(0,0,0,.55)}
-  .noms{font-size:calc(var(--w)*.043);letter-spacing:.32em;text-transform:uppercase;color:#fff;font-weight:500;margin-top:calc(var(--w)*.02)}
-  .noms .pt{color:var(--or-vif);padding:0 calc(var(--w)*.015)}
-  .edition-ligne{font-size:calc(var(--w)*.03);letter-spacing:.28em;text-transform:uppercase;color:#f4ecd8;margin-top:calc(var(--w)*.018)}
-  .hashtag-c{font-family:'Allura',cursive;font-size:calc(var(--w)*.062);margin-top:calc(var(--w)*.012);color:var(--or-vif)}
-  /* pastille "ouvrir" en bas de la couverture */
-  .sceau-hint{position:absolute;bottom:calc(var(--w)*.02);left:50%;transform:translateX(-50%);
-    font-family:'Montserrat',sans-serif;font-size:calc(var(--w)*.026);letter-spacing:.22em;text-transform:uppercase;
-    color:rgba(255,255,255,.0)}
-
-  /* ---- verso : page intérieure ---- */
-  .verso{transform:rotateY(180deg);
-    background:radial-gradient(ellipse 90% 40% at 50% 0%, rgba(201,162,39,.12), transparent 65%),var(--ivoire);
-    color:var(--brun)}
-  .verso::before{content:'';position:absolute;inset:calc(var(--w)*.033);
-    border:1px solid rgba(201,162,39,.7);pointer-events:none;z-index:3}
-  .coin{position:absolute;width:calc(var(--w)*.22);height:auto;z-index:2;pointer-events:none}
-  .coin.tl{top:calc(var(--w)*.022);left:calc(var(--w)*.022)}
-  .coin.tr{top:calc(var(--w)*.022);right:calc(var(--w)*.022);transform:scaleX(-1)}
-  .coin.bl{bottom:calc(var(--w)*.022);left:calc(var(--w)*.022);transform:scaleY(-1)}
-  .coin.br{bottom:calc(var(--w)*.022);right:calc(var(--w)*.022);transform:scale(-1,-1)}
-  .pont-bas{position:absolute;left:0;right:0;bottom:0;width:100%;height:calc(var(--h)*.16);
-    object-fit:cover;object-position:center 62%;opacity:.95;
-    -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 55%);
-    mask-image:linear-gradient(180deg,transparent 0%,#000 55%)}
-  .int-inner{position:absolute;inset:0;z-index:4;display:flex;flex-direction:column;align-items:center;
-    text-align:center;padding:calc(var(--w)*.06) calc(var(--w)*.09) calc(var(--w)*.05)}
-  .couronne{position:relative;width:calc(var(--w)*.24)}
-  .couronne img{width:100%;height:auto;display:block}
-  .noms-couronne{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-    font-family:'Playfair Display',serif;font-weight:600;font-size:calc(var(--w)*.046);color:var(--brun);
-    padding-top:calc(var(--w)*.012);white-space:nowrap}
-  .noms-couronne .esp{font-size:calc(var(--w)*.05);color:var(--or-fonce);padding:0 calc(var(--w)*.008)}
-  .intro{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:calc(var(--w)*.033);line-height:1.32;
-    color:#4a3d22;margin-top:calc(var(--w)*.022)}
-  .intro b{font-weight:600}
-  .script-titre{font-family:'Allura',cursive;font-size:calc(var(--w)*.072);color:var(--or-fonce);
-    line-height:1;margin-top:calc(var(--w)*.026)}
-  .date-caps{font-size:calc(var(--w)*.028);letter-spacing:.24em;text-transform:uppercase;color:var(--brun);
-    font-weight:500;margin-top:calc(var(--w)*.012)}
-  .ligne-h{display:flex;align-items:baseline;gap:calc(var(--w)*.018);margin-top:calc(var(--w)*.011);
-    font-family:'Cormorant Garamond',serif}
-  .ligne-h .h{font-family:'Playfair Display',serif;font-weight:500;font-size:calc(var(--w)*.046);color:var(--or-fonce);white-space:nowrap}
-  .ligne-h .d{font-style:italic;font-size:calc(var(--w)*.036);color:#4a3d22;text-align:left}
-  .lieu-flex{display:flex;align-items:center;gap:calc(var(--w)*.04);margin-top:calc(var(--w)*.01)}
-  .lieu-txt{text-align:right}
-  .lieu-nom{font-family:'Playfair Display',serif;font-weight:600;font-size:calc(var(--w)*.042);
-    letter-spacing:.06em;color:var(--or-fonce)}
-  .lieu-adresse{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:calc(var(--w)*.034);
-    line-height:1.4;color:#4a3d22;margin-top:calc(var(--w)*.008)}
-  .lieu-flex img{width:calc(var(--w)*.26);height:calc(var(--w)*.19);object-fit:cover;
-    border-radius:50% 50% 0 0/62% 62% 0 0;border:1px solid var(--or);padding:calc(var(--w)*.01);background:#fffdf6}
-  .rsvp-zone{margin-top:auto;display:flex;align-items:center;gap:calc(var(--w)*.04);z-index:5}
-  .rsvp-zone .qr{width:calc(var(--w)*.15);height:calc(var(--w)*.15);background:#fff;padding:calc(var(--w)*.012);
-    border:1px solid var(--or)}
-  .rsvp-zone .qr img{width:100%;height:100%;display:block}
-  .rsvp-txt{text-align:left}
-  .rsvp-txt .etq{font-size:calc(var(--w)*.028);letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:#6d5a2a}
-  .rsvp-txt p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:calc(var(--w)*.032);color:#4a3d22;margin-top:calc(var(--w)*.006)}
-  .code{display:inline-block;font-size:calc(var(--w)*.028);letter-spacing:.16em;text-transform:uppercase;font-weight:600;
-    color:var(--brun);border:1px solid var(--or);padding:calc(var(--w)*.008) calc(var(--w)*.02);
-    background:rgba(255,253,246,.75);margin-top:calc(var(--w)*.012)}
   .liens{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
   .btn{display:inline-block;padding:.7rem 1.6rem;border:1px solid var(--or);color:var(--or-pale);
     text-decoration:none;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;transition:.3s;
     -webkit-tap-highlight-color:transparent}
   .btn:hover{background:var(--or);color:var(--noir)}
-  @media(hover:none){
-    /* évite l'état "collé" au survol sur écrans tactiles */
-    .btn:hover{background:transparent;color:var(--or-pale)}
-  }
+  @media(hover:none){ .btn:hover{background:transparent;color:var(--or-pale)} }
 </style>
 </head>
 <body>
@@ -148,66 +68,8 @@
 
 <div class="scene">
   <div class="card" id="card" role="button" tabindex="0" aria-label="Ouvrir la carte d'invitation">
-
-    <!-- Recto : couverture -->
-    <div class="face recto">
-      <img class="fond" src="PHOTO-2026-04-02-14-25-46.jpg" alt="Ibrahim et Fatim">
-      <div class="voile"></div>
-      <div class="contenu">
-        <div class="masthead">WEDDING</div>
-        <div class="sous-masthead">Édition spéciale — Abidjan, Côte d'Ivoire</div>
-        <div class="lignes-g">« Notre bonheur<br>pour toujours<br>commence ici »</div>
-        <div class="lignes-d">Le jour où nous<br>nous dirons oui.</div>
-        <div class="bas">
-          <div class="initiales">I &amp; F</div>
-          <div class="noms">IBRAHIM <span class="pt">·</span> FATIM</div>
-          <div class="edition-ligne">Édition Septembre 2026</div>
-          <div class="hashtag-c">#Ibratim2026</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Verso : page intérieure -->
-    <div class="face verso">
-      <img class="coin tl" src="coin.png" alt="">
-      <img class="coin tr" src="coin.png" alt="">
-      <img class="coin bl" src="coin.png" alt="">
-      <img class="coin br" src="coin.png" alt="">
-      <img class="pont-bas" src="pont-ado-fade.png" alt="">
-      <div class="int-inner">
-        <div class="couronne">
-          <img src="laurier.png" alt="">
-          <div class="noms-couronne">Ibrahim <span class="esp">&amp;</span> Fatim</div>
-        </div>
-        <p class="intro"><b>Entourés de nos familles,</b> c'est avec une immense joie que nous vous
-        invitons à la célébration de notre mariage. D'une simple rencontre est née une belle histoire,
-        construite au fil du temps avec complicité, confiance et affection. Aujourd'hui, nous avons
-        choisi d'écrire ensemble un nouveau chapitre de notre vie. Parce que les plus beaux moments
-        prennent tout leur sens lorsqu'ils sont partagés avec ceux qui nous sont chers, nous serons
-        honorés de vous compter parmi nous pour célébrer cette journée unique et précieuse.</p>
-        <div class="script-titre">Date</div>
-        <div class="date-caps">Samedi 19 septembre 2026</div>
-        <div class="ligne-h"><span class="h">15h30</span><span class="d">Cérémonie civile suivie du cocktail d'honneur.</span></div>
-        <div class="ligne-h"><span class="h">19h00</span><span class="d">Dîner et soirée dansante.</span></div>
-        <div class="script-titre">Lieu</div>
-        <div class="lieu-flex">
-          <div class="lieu-txt">
-            <div class="lieu-nom">PAVILLON LOTUS</div>
-            <div class="lieu-adresse">Riviera M'Pouto, Cocody<br>Abidjan, Côte d'Ivoire</div>
-          </div>
-          <img src="pavillon-arche.png" alt="Pavillon Lotus">
-        </div>
-        <div class="rsvp-zone">
-          <div class="qr"><img src="qr.png" alt="Code QR vers le site"></div>
-          <div class="rsvp-txt">
-            <div class="etq">Scannez pour confirmer<br>votre présence</div>
-            <p>et découvrir tous les détails<br>de notre célébration.</p>
-            <span class="code">Code d'accès : IBRATIM2026</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
+    <div class="face recto"><img src="carte-recto.jpg" alt="Couverture — Ibrahim &amp; Fatim, 19 septembre 2026"></div>
+    <div class="face verso"><img src="carte-verso.jpg" alt="Invitation — programme, lieu et RSVP"></div>
   </div>
 </div>
 
