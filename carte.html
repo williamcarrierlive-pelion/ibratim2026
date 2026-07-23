@@ -2,78 +2,71 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#0e0c09">
 <title>Notre invitation — Ibrahim &amp; Fatim — 19.09.26</title>
+<!-- Aperçu lors du partage (réseaux sociaux / messageries) -->
 <meta property="og:title" content="Ibrahim &amp; Fatim — Notre invitation">
-<meta property="og:description" content="Touchez la carte pour l'ouvrir · 19 septembre 2026 · Abidjan">
+<meta property="og:description" content="Touchez la carte pour l'ouvrir · Samedi 19 septembre 2026 · Abidjan · #Ibratim2026">
 <meta property="og:image" content="https://ibratim2026.github.io/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ibratim2026.github.io/carte.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ibrahim &amp; Fatim — Notre invitation">
+<meta name="twitter:description" content="Touchez la carte pour l'ouvrir · 19 septembre 2026 · Abidjan">
+<meta name="twitter:image" content="https://ibratim2026.github.io/og-image.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --or:#c9a227; --or-vif:#e8c34d; --or-fonce:#a8842a; --or-pale:#e6d9ae;
     --ivoire:#faf6ec; --noir:#0e0c09; --brun:#2e2617;
-    /* dimensions d'une page de carte (ratio 2:3) */
-    --w:min(44vw, 340px);
+    /* largeur d'une carte (ratio 2:3). Une seule page à la fois -> jamais de débordement. */
+    --w:min(340px, 86vw, calc((100dvh - 190px) / 1.5));
     --h:calc(var(--w) * 1.5);
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html,body{height:100%}
   body{
     font-family:'Montserrat',sans-serif;color:var(--or-pale);
+    min-height:100dvh;
     background:
       radial-gradient(ellipse 80% 55% at 50% 0%, rgba(201,162,39,.14), transparent 60%),
       var(--noir);
     display:flex;flex-direction:column;align-items:center;justify-content:center;
-    gap:1.6rem;padding:1.4rem;overflow-x:hidden}
-  .titre{font-family:'Allura',cursive;font-size:clamp(2rem,6vw,2.9rem);
+    gap:clamp(1rem,3.5vw,1.6rem);padding:1.2rem;overflow-x:hidden}
+  .titre{font-family:'Allura',cursive;font-size:clamp(1.9rem,6vw,2.9rem);
     background:linear-gradient(110deg,#8a6d1f 20%,var(--or-vif) 38%,#fff3c4 50%,var(--or-vif) 62%,#8a6d1f 80%);
     background-size:220% auto;-webkit-background-clip:text;background-clip:text;
     -webkit-text-fill-color:transparent;animation:brillance 4.2s linear infinite;text-align:center}
   @keyframes brillance{to{background-position:-220% center}}
-  .hint{font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(230,217,174,.75);
-        text-align:center;transition:opacity .5s}
-  .scene{perspective:2600px;-webkit-perspective:2600px}
-  .book{
-    position:relative;width:calc(var(--w) * 2);height:var(--h);
-    transform:translateX(calc(var(--w) / -2));
-    transition:transform .9s cubic-bezier(.6,.05,.28,.99);
-    transform-style:preserve-3d}
-  .book.ouvert{transform:translateX(0)}
+  .hint{font-size:clamp(.62rem,2.6vw,.72rem);letter-spacing:.24em;text-transform:uppercase;
+    color:rgba(230,217,174,.75);text-align:center}
 
-  /* ===== page intérieure (fixe, moitié droite) ===== */
-  .interieur{
-    position:absolute;top:0;left:var(--w);width:var(--w);height:var(--h);
-    background:
-      radial-gradient(ellipse 90% 40% at 50% 0%, rgba(201,162,39,.12), transparent 65%),
-      var(--ivoire);
-    box-shadow:0 22px 60px rgba(0,0,0,.55);
-    color:var(--brun);overflow:hidden}
-  .interieur::before{content:'';position:absolute;inset:calc(var(--w)*.033);
-    border:1px solid rgba(201,162,39,.7);pointer-events:none;z-index:3}
-  /* ===== couverture pivotante ===== */
-  .cover{
-    position:absolute;top:0;left:var(--w);width:var(--w);height:var(--h);
-    transform-origin:left center;transform-style:preserve-3d;
-    transition:transform 1.15s cubic-bezier(.6,.05,.28,.99);
-    cursor:pointer;z-index:5}
-  .book.ouvert .cover{transform:rotateY(-180deg)}
-  .face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
-  /* recto : la couverture */
-  .recto{background:#1a130b;box-shadow:0 22px 60px rgba(0,0,0,.6)}
-  .recto .fond{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;
+  /* ===== flip card ===== */
+  .scene{perspective:1800px;-webkit-perspective:1800px;width:var(--w);height:var(--h)}
+  .card{position:relative;width:100%;height:100%;transform-style:preserve-3d;cursor:pointer;
+    transition:transform 1.05s cubic-bezier(.6,.05,.28,.99)}
+  .card.ouvert{transform:rotateY(-180deg)}
+  .face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+    overflow:hidden;box-shadow:0 22px 60px rgba(0,0,0,.6)}
+
+  /* ---- recto : couverture ---- */
+  .recto{background:#1a130b}
+  .recto .fond{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 28%;
     filter:sepia(.18) saturate(1.04) brightness(.97)}
   .recto .voile{position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,19,11,.46) 0%,rgba(26,19,11,.08) 24%,rgba(26,19,11,0) 46%,rgba(26,19,11,.82) 100%)}
-  .recto .contenu{position:absolute;inset:0;padding:calc(var(--w)*.08) calc(var(--w)*.08)}
+  .recto .contenu{position:absolute;inset:0;padding:calc(var(--w)*.08)}
   .masthead{font-family:'Playfair Display',serif;font-weight:500;letter-spacing:.06em;
     font-size:calc(var(--w)*.16);line-height:1;text-align:center;color:var(--or-vif)}
   .sous-masthead{text-align:center;font-size:calc(var(--w)*.026);letter-spacing:.3em;text-transform:uppercase;
     color:#f4ecd8;margin-top:calc(var(--w)*.025);text-shadow:0 1px 8px rgba(0,0,0,.8)}
   .lignes-g,.lignes-d{position:absolute;font-family:'Cormorant Garamond',serif;font-style:italic;
     font-size:calc(var(--w)*.047);line-height:1.5;color:#f4ecd8;text-shadow:0 1px 10px rgba(0,0,0,.9)}
-  .lignes-g{left:calc(var(--w)*.08);top:38%;text-align:left;max-width:40%}
-  .lignes-d{right:calc(var(--w)*.08);top:57%;text-align:right;max-width:38%}
+  .lignes-g{left:calc(var(--w)*.08);top:37%;text-align:left;max-width:44%}
+  .lignes-d{right:calc(var(--w)*.08);top:56%;text-align:right;max-width:40%}
   .bas{position:absolute;left:calc(var(--w)*.08);right:calc(var(--w)*.08);bottom:calc(var(--w)*.055);text-align:center}
   .initiales{font-family:'Allura',cursive;font-size:calc(var(--w)*.155);line-height:1;color:var(--or-vif);
     text-shadow:0 2px 14px rgba(0,0,0,.55)}
@@ -81,20 +74,22 @@
   .noms .pt{color:var(--or-vif);padding:0 calc(var(--w)*.015)}
   .edition-ligne{font-size:calc(var(--w)*.03);letter-spacing:.28em;text-transform:uppercase;color:#f4ecd8;margin-top:calc(var(--w)*.018)}
   .hashtag-c{font-family:'Allura',cursive;font-size:calc(var(--w)*.062);margin-top:calc(var(--w)*.012);color:var(--or-vif)}
-  /* verso de la couverture (visible une fois ouverte) */
-  .verso{background:linear-gradient(180deg,#fbf7ec,#f2ebd7);transform:rotateY(180deg);
-    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:calc(var(--w)*.03);
-    box-shadow:inset -14px 0 34px rgba(46,38,23,.14)}
-  .verso::before{content:'';position:absolute;inset:calc(var(--w)*.033);border:1px solid rgba(201,162,39,.45)}
-  .verso .mono{font-family:'Allura',cursive;font-size:calc(var(--w)*.19);color:rgba(168,132,42,.55);line-height:1}
-  .verso .devise{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:calc(var(--w)*.044);
-    color:rgba(74,61,34,.75);text-align:center;max-width:70%}
-  /* ===== contenu de la page intérieure ===== */
-  .coin{position:absolute;width:calc(var(--w)*.24);height:auto;z-index:2;pointer-events:none}
-  .coin.tl{top:calc(var(--w)*.024);left:calc(var(--w)*.024)}
-  .coin.tr{top:calc(var(--w)*.024);right:calc(var(--w)*.024);transform:scaleX(-1)}
-  .coin.bl{bottom:calc(var(--w)*.024);left:calc(var(--w)*.024);transform:scaleY(-1)}
-  .coin.br{bottom:calc(var(--w)*.024);right:calc(var(--w)*.024);transform:scale(-1,-1)}
+  /* pastille "ouvrir" en bas de la couverture */
+  .sceau-hint{position:absolute;bottom:calc(var(--w)*.02);left:50%;transform:translateX(-50%);
+    font-family:'Montserrat',sans-serif;font-size:calc(var(--w)*.026);letter-spacing:.22em;text-transform:uppercase;
+    color:rgba(255,255,255,.0)}
+
+  /* ---- verso : page intérieure ---- */
+  .verso{transform:rotateY(180deg);
+    background:radial-gradient(ellipse 90% 40% at 50% 0%, rgba(201,162,39,.12), transparent 65%),var(--ivoire);
+    color:var(--brun)}
+  .verso::before{content:'';position:absolute;inset:calc(var(--w)*.033);
+    border:1px solid rgba(201,162,39,.7);pointer-events:none;z-index:3}
+  .coin{position:absolute;width:calc(var(--w)*.22);height:auto;z-index:2;pointer-events:none}
+  .coin.tl{top:calc(var(--w)*.022);left:calc(var(--w)*.022)}
+  .coin.tr{top:calc(var(--w)*.022);right:calc(var(--w)*.022);transform:scaleX(-1)}
+  .coin.bl{bottom:calc(var(--w)*.022);left:calc(var(--w)*.022);transform:scaleY(-1)}
+  .coin.br{bottom:calc(var(--w)*.022);right:calc(var(--w)*.022);transform:scale(-1,-1)}
   .pont-bas{position:absolute;left:0;right:0;bottom:0;width:100%;height:calc(var(--h)*.16);
     object-fit:cover;object-position:center 62%;opacity:.95;
     -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 55%);
@@ -138,13 +133,12 @@
     background:rgba(255,253,246,.75);margin-top:calc(var(--w)*.012)}
   .liens{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
   .btn{display:inline-block;padding:.7rem 1.6rem;border:1px solid var(--or);color:var(--or-pale);
-    text-decoration:none;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;transition:.3s}
+    text-decoration:none;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;transition:.3s;
+    -webkit-tap-highlight-color:transparent}
   .btn:hover{background:var(--or);color:var(--noir)}
-  @media(max-width:640px){
-    :root{--w:min(78vw, 300px)}
-    body{gap:1.2rem}
-    /* sur mobile, la carte ouverte se recentre sur la page intérieure */
-    .book.ouvert{transform:translateX(calc(var(--w) / -1.35))}
+  @media(hover:none){
+    /* évite l'état "collé" au survol sur écrans tactiles */
+    .btn:hover{background:transparent;color:var(--or-pale)}
   }
 </style>
 </head>
@@ -153,10 +147,28 @@
 <h1 class="titre">Notre invitation</h1>
 
 <div class="scene">
-  <div class="book" id="book" role="button" tabindex="0" aria-label="Ouvrir la carte d'invitation">
+  <div class="card" id="card" role="button" tabindex="0" aria-label="Ouvrir la carte d'invitation">
 
-    <!-- Page intérieure -->
-    <div class="interieur">
+    <!-- Recto : couverture -->
+    <div class="face recto">
+      <img class="fond" src="PHOTO-2026-04-02-14-25-46.jpg" alt="Ibrahim et Fatim">
+      <div class="voile"></div>
+      <div class="contenu">
+        <div class="masthead">WEDDING</div>
+        <div class="sous-masthead">Édition spéciale — Abidjan, Côte d'Ivoire</div>
+        <div class="lignes-g">« Notre bonheur<br>pour toujours<br>commence ici »</div>
+        <div class="lignes-d">Le jour où nous<br>nous dirons oui.</div>
+        <div class="bas">
+          <div class="initiales">I &amp; F</div>
+          <div class="noms">IBRAHIM <span class="pt">·</span> FATIM</div>
+          <div class="edition-ligne">Édition Septembre 2026</div>
+          <div class="hashtag-c">#Ibratim2026</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verso : page intérieure -->
+    <div class="face verso">
       <img class="coin tl" src="coin.png" alt="">
       <img class="coin tr" src="coin.png" alt="">
       <img class="coin bl" src="coin.png" alt="">
@@ -196,30 +208,6 @@
       </div>
     </div>
 
-    <!-- Couverture qui tourne -->
-    <div class="cover" id="cover">
-      <div class="face recto">
-        <img class="fond" src="PHOTO-2026-04-02-14-25-46.jpg" alt="Ibrahim et Fatim">
-        <div class="voile"></div>
-        <div class="contenu">
-          <div class="masthead">WEDDING</div>
-          <div class="sous-masthead">Édition spéciale — Abidjan, Côte d'Ivoire</div>
-          <div class="lignes-g">« Notre bonheur<br>pour toujours<br>commence ici »</div>
-          <div class="lignes-d">Le jour où nous<br>nous dirons oui.</div>
-          <div class="bas">
-            <div class="initiales">I &amp; F</div>
-            <div class="noms">IBRAHIM <span class="pt">·</span> FATIM</div>
-            <div class="edition-ligne">Édition Septembre 2026</div>
-            <div class="hashtag-c">#Ibratim2026</div>
-          </div>
-        </div>
-      </div>
-      <div class="face verso">
-        <div class="mono">I &amp; F</div>
-        <div class="devise">« Deux âmes, une rencontre,<br>une merveilleuse histoire. »</div>
-      </div>
-    </div>
-
   </div>
 </div>
 
@@ -230,16 +218,16 @@
 </div>
 
 <script>
-  const book = document.getElementById('book');
+  const card = document.getElementById('card');
   const hint = document.getElementById('hint');
   function bascule(){
-    book.classList.toggle('ouvert');
-    const ouvert = book.classList.contains('ouvert');
+    card.classList.toggle('ouvert');
+    const ouvert = card.classList.contains('ouvert');
     hint.textContent = ouvert ? 'Touchez pour refermer' : 'Touchez la carte pour l’ouvrir';
-    book.setAttribute('aria-label', ouvert ? 'Refermer la carte' : 'Ouvrir la carte d’invitation');
+    card.setAttribute('aria-label', ouvert ? 'Refermer la carte' : 'Ouvrir la carte d’invitation');
   }
-  book.addEventListener('click', bascule);
-  book.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){ e.preventDefault(); bascule(); } });
+  card.addEventListener('click', bascule);
+  card.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){ e.preventDefault(); bascule(); } });
 </script>
 </body>
 </html>
